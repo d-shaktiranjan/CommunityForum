@@ -4,6 +4,26 @@
 
 {% block body %}
 <div class="form">
-    Fill the form
+    <form action="/signup" method="POST">
+        {% csrf_token %}
+        <div>
+            <input type="radio" name="type" id="teacher" value="teacher">
+            <label for="teacher">Teacher</label>
+            <input type="radio" name="type" id="student" value="student">
+            <label for="student">student</label>
+        </div>
+        <div>
+            <input type="text" name="name" id="name" placeholder="Enter name">
+        </div>
+        <div>
+            <input type="text" name="" id="" placeholder="reg no">@cgu.in
+        </div>
+        <div>
+            Other Data (TODO)
+        </div>
+        <div>
+            <button type="submit">Submit</button>
+        </div>
+    </form>
 </div>
 {% endblock body %}
