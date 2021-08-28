@@ -21,8 +21,14 @@
         <div>
             Other Data (TODO)
         </div>
+        <div id="pass" onkeyup="passCheck()">
+            <input type="password" name="password" id="password" placeholder="Password" required>
+            <input type="password" name="password" id="conPassword" placeholder="Confirm Password" required>
+            <label for="conPassword" style="color: red; display: none;" id="passMsg">Password & Confirm password not
+                macthed</label>
+        </div>
         <div>
-            <button type="submit">Submit</button>
+            <button type="submit" id="submitBtn">Submit</button>
         </div>
     </form>
 </div>
