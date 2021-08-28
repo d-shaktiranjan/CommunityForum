@@ -6,17 +6,17 @@
 <div class="form">
     <form action="/signup" method="POST">
         {% csrf_token %}
-        <div>
-            <input type="radio" name="type" id="teacher" value="teacher">
+        <div id="userType">
+            <input type="radio" name="type" id="teacher" value="teacher" required onclick="typeCheck()">
             <label for="teacher">Teacher</label>
-            <input type="radio" name="type" id="student" value="student">
+            <input type="radio" name="type" id="student" value="student" required checked onclick="typeCheck()">
             <label for="student">student</label>
         </div>
         <div>
             <input type="text" name="name" id="name" placeholder="Enter name">
         </div>
         <div>
-            <input type="text" name="" id="" placeholder="reg no">@cgu.in
+            <input type="text" name="uId" id="uId" placeholder="Registration Number">@cgu.in
         </div>
         <div>
             Other Data (TODO)
@@ -26,4 +26,6 @@
         </div>
     </form>
 </div>
+{% load static %}
+<script src="{% static 'js/signup.js' %}"></script>
 {% endblock body %}
