@@ -11,6 +11,11 @@ function typeCheck() {
 let passCheck = () => {
     let password = document.getElementById('password').value;
     let conPass = document.getElementById('conPassword').value;
+    if (password.length < 5) {
+        document.getElementById('conPassword').disabled = true;
+    } else {
+        document.getElementById('conPassword').disabled = false;
+    }
     let btn = document.getElementById('submitBtn');
     let passMsg = document.getElementById('passMsg');
     if (password == conPass) {
@@ -20,6 +25,4 @@ let passCheck = () => {
         btn.disabled = true;
         passMsg.style.display = "block";
     }
-    document.getElementById('message').style.color = 'red';
-    document.getElementById('message').innerHTML = 'not matching';
 }
