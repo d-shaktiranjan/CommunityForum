@@ -1,9 +1,11 @@
-function typeCheck() {
+let typeCheck = () => {
     let userType = document.getElementById('student').checked;
     let uId = document.getElementById('uId');
     if (userType) {
+        uId.type = "number";
         uId.placeholder = "Registration Number";
     } else {
+        uId.type = "text";
         uId.placeholder = "Teacher Name";
     }
 }

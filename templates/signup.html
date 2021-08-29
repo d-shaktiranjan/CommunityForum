@@ -16,19 +16,19 @@
             <input type="text" name="name" id="name" placeholder="Enter name">
         </div>
         <div>
-            <input type="text" name="uId" id="uId" placeholder="Registration Number">@cgu.in
+            <input type="number" name="uId" id="uId" placeholder="Registration Number">@cgu.in
         </div>
         <div>
             Other Data (TODO)
         </div>
         <div id="pass" onkeyup="passCheck()">
             <input type="password" name="password" id="password" placeholder="Password" required>
-            <input type="password" name="password" id="conPassword" placeholder="Confirm Password" required>
+            <input type="password" name="password" id="conPassword" placeholder="Confirm Password" required disabled>
             <label for="conPassword" style="color: red; display: none;" id="passMsg">Password & Confirm password not
                 macthed</label>
         </div>
         <div>
-            <button type="submit" id="submitBtn">Submit</button>
+            <button type="submit" id="submitBtn" style="cursor: pointer;">Submit</button>
         </div>
     </form>
 </div>
