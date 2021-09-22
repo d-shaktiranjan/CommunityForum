@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock title %}
+
+{% block body %}
+<form action="" method="POST">
+    {% csrf_token %}
+    <div id="userType">
+        <input type="radio" name="type" id="teacher" value="teacher" required>
+        <label for="teacher">Teacher</label>
+        <input type="radio" name="type" id="student" value="student" required checked>
+        <label for="student">Student</label>
+    </div>
+    <input type="text" placeholder="email@shaktiranjan.in" name="mail">
+    <input type="password" name="pass" id="" placeholder="Password Here">
+    <button type="submit">Login</button>
+</form>
+{% endblock body %}

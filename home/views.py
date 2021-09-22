@@ -14,3 +14,7 @@ def signup(request):
         conPassword = request.POST.get("conPassword")
         print(f"{name} is a {userType}")
     return render(request, "signup.html")
+
+
+def login(request):
+    return render(request, "login.html")
