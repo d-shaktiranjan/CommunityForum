@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
+from home.models import Students, Teachers
 # Create your views here.
 
 
@@ -12,7 +13,17 @@ def signup(request):
         name = request.POST.get("name")
         password = request.POST.get("password")
         conPassword = request.POST.get("conPassword")
-        print(f"{name} is a {userType}")
+        uId = request.POST.get("uId")
+        if password == conPassword:
+            if userType == "student":
+                newStudent = Students(
+                    name=name, regNumber=uId, password=password, branch="")
+                newStudent.save()
+                return HttpResponse(f"{name} is a student added")
+            newTeacher = Teachers(name=name, mailId=uId,
+                                  password=password, branch="")
+            newTeacher.save()
+            return HttpResponse(f"{name} is a Teacher added")
     return render(request, "signup.html")
 
 
