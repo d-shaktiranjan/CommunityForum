@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, HttpResponse
 from home.models import Students, Teachers
+from django.contrib.auth.hashers import make_password, check_password
 # Create your views here.
 
 
@@ -17,11 +18,11 @@ def signup(request):
         if password == conPassword:
             if userType == "student":
                 newStudent = Students(
-                    name=name, regNumber=uId, password=password, branch="")
+                    name=name, regNumber=uId, password=make_password(password), branch="")
                 newStudent.save()
                 return HttpResponse(f"{name} is a student added")
             newTeacher = Teachers(name=name, mailId=uId,
-                                  password=password, branch="")
+                                  password=make_password(password), branch="")
             newTeacher.save()
             return HttpResponse(f"{name} is a Teacher added")
     return render(request, "signup.html")
@@ -34,7 +35,7 @@ def userLogin(isStudent, uId, password):
         user = Teachers.objects.filter(mailId=uId[0]).first()
     if user is None:
         return HttpResponse("Please Signup")
-    if password == user.password:
+    if check_password(password, user.password):
         return HttpResponse("Password Matched")
     return HttpResponse("Password not matched")
 
