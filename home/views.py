@@ -28,4 +28,16 @@ def signup(request):
 
 
 def login(request):
+    if request.method == "POST":
+        userType = request.POST.get("type")
+        password = request.POST.get("pass")
+        mail = request.POST.get("mail")
+        if userType == "student":
+            uId = str(mail).split("@")
+            student = Students.objects.filter(regNumber=uId[0]).first()
+            if student is None:
+                return HttpResponse("Sign up first")
+            if password == student.password:
+                return HttpResponse("Password Correct")
+            return HttpResponse("In correct pass")
     return render(request, "login.html")
