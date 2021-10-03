@@ -27,23 +27,24 @@ def signup(request):
     return render(request, "signup.html")
 
 
+def userLogin(isStudent, uId, password):
+    if isStudent:
+        user = Students.objects.filter(regNumber=uId[0]).first()
+    else:
+        user = Teachers.objects.filter(mailId=uId[0]).first()
+    if user is None:
+        return HttpResponse("Please Signup")
+    if password == user.password:
+        return HttpResponse("Password Matched")
+    return HttpResponse("Password not matched")
+
+
 def login(request):
     if request.method == "POST":
         userType = request.POST.get("type")
         password = request.POST.get("pass")
         mail = request.POST.get("mail")
         uId = str(mail).split("@")
-        if userType == "student":
-            student = Students.objects.filter(regNumber=uId[0]).first()
-            if student is None:
-                return HttpResponse("Sign up first")
-            if password == student.password:
-                return HttpResponse("Password Correct")
-            return HttpResponse("In correct pass")
-        teacher = Teachers.objects.filter(mailId=uId[0]).first()
-        if teacher is None:
-            return HttpResponse("Please signup")
-        if password == teacher.password:
-            return HttpResponse("Correct Password")
-        return HttpResponse("Pass not match")
+        isStudent = True if userType == "student" else False
+        return userLogin(isStudent, uId, password)
     return render(request, "login.html")
