@@ -1,20 +1,27 @@
 from django.db import models
 from datetime import datetime
 
+import uuid
+
+
 # Create your models here.
 
 
 class Students(models.Model):
+    sID = models.UUIDField(blank=False, primary_key=True,
+                           default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=20)
-    regNumber = models.IntegerField(primary_key=True)
+    regNumber = models.IntegerField(unique=True)
     password = models.TextField()
     branch = models.CharField(max_length=10)
     dateTimeOfJoin = models.DateTimeField(default=datetime.now())
 
 
 class Teachers(models.Model):
+    tID = models.UUIDField(blank=False, primary_key=True,
+                           default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=20)
-    mailId = models.CharField(max_length=25, primary_key=True)
+    mailId = models.CharField(max_length=25, unique=True)
     password = models.TextField()
     branch = models.CharField(max_length=10)
     dateTimeOfJoin = models.DateTimeField(default=datetime.now())
