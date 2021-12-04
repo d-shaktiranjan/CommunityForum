@@ -25,3 +25,13 @@ class Teachers(models.Model):
     password = models.TextField()
     branch = models.CharField(max_length=10)
     dateTimeOfJoin = models.DateTimeField(default=datetime.now())
+
+
+class Quentions(models.Model):
+    qID = models.UUIDField(blank=False, primary_key=True,
+                           default=uuid.uuid4, editable=False)
+    title = models.CharField(max_length=30)
+    about = models.TextField()
+    dateTimeOfPost = models.DateTimeField(default=datetime.now())
+    likeCount = models.IntegerField(default=0)
+    disLikeCount = models.IntegerField(default=0)
