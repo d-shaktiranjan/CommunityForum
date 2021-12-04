@@ -54,6 +54,12 @@ def login(request):
     return render(request, "login.html")
 
 
+def logout(request):
+    del request.session['log']
+    del request.session['uId']
+    return redirect(index)
+
+
 def postQuestion(request):
     if request.method == "POST":
         title = request.POST.get("title")
