@@ -1,5 +1,4 @@
 from django.db import models
-from datetime import datetime
 
 import uuid
 
@@ -14,7 +13,7 @@ class Students(models.Model):
     regNumber = models.IntegerField(unique=True)
     password = models.TextField()
     branch = models.CharField(max_length=10)
-    dateTimeOfJoin = models.DateTimeField(default=datetime.now())
+    dateTimeOfJoin = models.DateTimeField()
 
 
 class Teachers(models.Model):
@@ -24,7 +23,7 @@ class Teachers(models.Model):
     mailId = models.CharField(max_length=25, unique=True)
     password = models.TextField()
     branch = models.CharField(max_length=10)
-    dateTimeOfJoin = models.DateTimeField(default=datetime.now())
+    dateTimeOfJoin = models.DateTimeField()
 
 
 class Quentions(models.Model):
@@ -32,7 +31,7 @@ class Quentions(models.Model):
                            default=uuid.uuid4, editable=False)
     title = models.CharField(max_length=30)
     about = models.TextField()
-    dateTimeOfPost = models.DateTimeField(default=datetime.now())
+    dateTimeOfPost = models.DateTimeField()
     likeCount = models.IntegerField(default=0)
     disLikeCount = models.IntegerField(default=0)
 
@@ -41,6 +40,6 @@ class Answers(models.Model):
     aID = models.UUIDField(blank=False, primary_key=True,
                            default=uuid.uuid4, editable=False)
     ans = models.TextField()
-    dateTimeOfPost = models.DateTimeField(default=datetime.now())
+    dateTimeOfPost = models.DateTimeField()
     likeCount = models.IntegerField(default=0)
     disLikeCount = models.IntegerField(default=0)
