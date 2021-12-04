@@ -39,6 +39,7 @@ class Quentions(models.Model):
 class Answers(models.Model):
     aID = models.UUIDField(blank=False, primary_key=True,
                            default=uuid.uuid4, editable=False)
+    qID = models.CharField(max_length=36, default=None)
     ans = models.TextField()
     dateTimeOfPost = models.DateTimeField()
     likeCount = models.IntegerField(default=0)
