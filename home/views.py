@@ -6,7 +6,7 @@ from datetime import datetime
 
 
 def index(request):
-    return redirect(signup)
+    return HttpResponse(f"Hey user - {request.session.get('uId')}")
 
 
 def signup(request):
@@ -19,25 +19,27 @@ def signup(request):
         if password == conPassword:
             if userType == "student":
                 newStudent = Students(
-                    name=name, regNumber=uId, password=make_password(password), branch="")
+                    name=name, regNumber=uId, password=make_password(password), branch="", dateTimeOfJoin=datetime.now())
                 newStudent.save()
                 return HttpResponse(f"{name} is a student added")
             newTeacher = Teachers(name=name, mailId=uId,
-                                  password=make_password(password), branch="")
+                                  password=make_password(password), branch="", dateTimeOfJoin=datetime.now())
             newTeacher.save()
             return HttpResponse(f"{name} is a Teacher added")
     return render(request, "signup.html")
 
 
-def userLogin(isStudent, uId, password):
+def userLogin(request, isStudent, uId, password):
     if isStudent:
-        user = Students.objects.filter(regNumber=uId[0]).first()
+        user = Students.objects.filter(regNumber=uId).first()
     else:
-        user = Teachers.objects.filter(mailId=uId[0]).first()
+        user = Teachers.objects.filter(mailId=uId).first()
     if user is None:
         return HttpResponse("Please Signup")
     if check_password(password, user.password):
-        return HttpResponse("Password Matched")
+        request.session['log'] = True
+        request.session['uId'] = uId
+        return redirect(index)
     return HttpResponse("Password not matched")
 
 
@@ -48,7 +50,7 @@ def login(request):
         mail = request.POST.get("mail")
         uId = str(mail).split("@")
         isStudent = True if userType == "student" else False
-        return userLogin(isStudent, uId, password)
+        return userLogin(request, isStudent, uId[0], password)
     return render(request, "login.html")
 
 
