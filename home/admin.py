@@ -4,3 +4,4 @@ from home.models import *
 admin.site.register(Students)
 admin.site.register(Teachers)
 admin.site.register(Quentions)
+admin.site.register(Answers)

@@ -35,3 +35,12 @@ class Quentions(models.Model):
     dateTimeOfPost = models.DateTimeField(default=datetime.now())
     likeCount = models.IntegerField(default=0)
     disLikeCount = models.IntegerField(default=0)
+
+
+class Answers(models.Model):
+    aID = models.UUIDField(blank=False, primary_key=True,
+                           default=uuid.uuid4, editable=False)
+    ans = models.TextField()
+    dateTimeOfPost = models.DateTimeField(default=datetime.now())
+    likeCount = models.IntegerField(default=0)
+    disLikeCount = models.IntegerField(default=0)
