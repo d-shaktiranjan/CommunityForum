@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, HttpResponse
-from home.models import Students, Teachers
+from home.models import Students, Teachers, Quentions
 from django.contrib.auth.hashers import make_password, check_password
+from datetime import datetime
 # Create your views here.
 
 
@@ -49,3 +50,14 @@ def login(request):
         isStudent = True if userType == "student" else False
         return userLogin(isStudent, uId, password)
     return render(request, "login.html")
+
+
+def postQuestion(request):
+    if request.method == "POST":
+        title = request.POST.get("title")
+        about = request.POST.get("about")
+        new = Quentions(title=title, about=about,
+                        dateTimeOfPost=datetime.now())
+        new.save()
+        return HttpResponse("Post added")
+    return render(request, "postQuestion.html")
