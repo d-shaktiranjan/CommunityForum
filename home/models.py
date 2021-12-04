@@ -29,6 +29,7 @@ class Teachers(models.Model):
 class Quentions(models.Model):
     qID = models.UUIDField(blank=False, primary_key=True,
                            default=uuid.uuid4, editable=False)
+    uID = models.CharField(max_length=36)
     title = models.CharField(max_length=30)
     about = models.TextField()
     dateTimeOfPost = models.DateTimeField()
@@ -39,6 +40,7 @@ class Quentions(models.Model):
 class Answers(models.Model):
     aID = models.UUIDField(blank=False, primary_key=True,
                            default=uuid.uuid4, editable=False)
+    uID = models.CharField(max_length=36)
     qID = models.CharField(max_length=36, default=None)
     ans = models.TextField()
     dateTimeOfPost = models.DateTimeField()
