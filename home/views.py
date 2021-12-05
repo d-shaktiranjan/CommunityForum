@@ -13,22 +13,24 @@ def index(request):
 def signup(request):
     if request.method == "POST":
         userType = request.POST.get("type")
+        userType = "student"  # TODO
         name = request.POST.get("name")
         password = request.POST.get("password")
         conPassword = request.POST.get("conPassword")
-        uId = request.POST.get("uId")
+        uId = request.POST.get("mail")
+        regNumber = uId.split("@")[0]
         if password == conPassword:
             if userType == "student":
                 newStudent = Students(
-                    name=name, regNumber=uId, password=make_password(password), branch="", dateTimeOfJoin=datetime.now())
+                    name=name, regNumber=regNumber, password=make_password(password), branch="CSE", dateTimeOfJoin=datetime.now())
                 newStudent.save()
                 return HttpResponse(f"{name} is a student added")
             newTeacher = Teachers(name=name, mailId=uId,
-                                  password=make_password(password), branch="", dateTimeOfJoin=datetime.now())
+                                  password=make_password(password), branch="CSE", dateTimeOfJoin=datetime.now())
             newTeacher.save()
             return HttpResponse(f"{name} is a Teacher added")
         return HttpResponse("Pas & con not match")
-    return render(request, "signup.html")
+    return redirect(index)
 
 
 def userLogin(request, isStudent, uId, password):
