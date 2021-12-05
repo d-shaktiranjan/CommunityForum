@@ -3,17 +3,97 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ===== SWEET ALERTS 2 ===== -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.20/dist/sweetalert2.all.min.js"></script>
+
+    <!-- ===== CSS ===== -->
+    {% load static %}
+    <link rel="shortcut icon" href="{% static 'img/logo.png' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+    <!-- ===== BOX ICONS ===== -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+
     <title>{% block title %}{% endblock title %}</title>
+    {% block link %}{% endblock link %}
 </head>
 
 <body>
-    <nav>Navbar (TODO)</nav>
-    <div>
-        {% block body %}{% endblock body %}
+
+    <!--===== HEADER =====-->
+    <header class="l-header" id="header">
+        <nav class="nav bd-grid">
+            <div class="nav__toggle" id="nav-toggle">
+                <i class='bx bxs-grid'></i>
+            </div>
+
+            <a href="/" class="nav__logo">CV Raman Community Forum</a>
+
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="/" class="nav__link">Home</a></li>
+                    <li class="nav__item">
+                        {% if request.session.log %}
+                        <a id="open" class="nav__log">Log Out</a>
+                        {% else %}
+                        <a id="open" class="nav__log">Log In</a>
+                        {% endif %}
+                    </li>
+                </ul>
+            </div>
+
+            {% if request.session.log %}
+            <div class="nav__shop">
+                <i class='bx bx-shopping-bag' onclick="location.href='/viewCart'"></i>
+            </div>
+            {% endif %}
+        </nav>
+    </header>
+
+    <div class="modal-container" id="modal_container">
+        <div class="modal">
+            {% if request.session.log %}
+            <h1>Hello, {{request.session.name}}!</h1>
+            <a href="/logout" class="modalBtn">Logout</a>
+            <button class="modalBtn" id="close">
+                Close me
+            </button>
+            {% else %}
+            <h1 id="modal-title">Hey, there!</h1>
+
+
+            <form action="/login" class="login" id="login-form" method="POST">
+                {% csrf_token %}
+                <input class="form__name" id="log-name" type="text" placeholder="John Smith" name="name" value=" "
+                    required />
+                <input class="form__email" type="email" placeholder="something@email.com" name="mail" required />
+                <input class="form__password" type="password" placeholder="Password" name="password" required />
+                <input class="confirm__password" id="confirm-pass" type="password" name="conPassword"
+                    placeholder="Confirm Password" value=" " required />
+                <button class="form__submit-btn" id="login-btn" type="submit">Log In
+                </button>
+            </form>
+            <a class="form__link" href="#" id="create-link" onclick="signUp()">Create an account</a></p>
+            <button class="modalBtn" id="close">
+                Close me
+            </button>
+            {% endif %}
+        </div>
     </div>
-    <footer>Footer (TODO)</footer>
+
+    {% block body %}
+    {% endblock body %}
+
+    <!--===== FOOTER =====-->
+    <footer class="footer section">
+        <p class="footer__copy">&#169; 2021 CV Raman Community Forum | All rights reserved</p>
+    </footer>
+
+    <!--===== JS =====-->
+    <script src="{% static 'js/main.js' %}"></script>
+
 </body>
 
 </html>
