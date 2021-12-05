@@ -330,6 +330,138 @@ img {
   display: none;
 }
 
+/* ===== Signup Modal ===== */
+.modal-container-sign {
+  z-index: 200;
+	position: fixed;
+	background-color: rgba(0, 0, 0, 0.3);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	opacity: 0;
+	top: 0;
+	left: 0;
+	height: 100vh;
+	width: 100vw;
+	transition: opacity 0.3s ease;
+	pointer-events: none;
+}
+
+.modal-container-sign.show {
+	opacity: 1;
+	pointer-events: auto;
+}
+
+.modal-sign {
+	background-color: #fff;
+	border-radius: 5px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+	padding: 30px 50px;
+	text-align: center;
+	width: 600px;
+	max-width: 85%;
+}
+
+.modal-sign h1 {
+	margin-bottom: 1rem;
+}
+
+.modal-sign p {
+	font-size: 14px;
+	opacity: 0.7;
+}
+
+.modal-sign .form-sign {
+  width: 720px;
+  height: 500px;
+  margin: 50px auto;
+  padding: 45px 65px;
+}
+
+.modal-sign .form__box-sign {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: #fff;
+  border-radius: 40px;
+}
+
+.modal-sign .form__left-sign {
+  width: 50%;
+}
+
+.modal-sign .form__right-sign {
+  line-height: 26px;
+  width: 50%;
+}
+
+.modal-sign .form__padding-right-sign {
+  padding: 0 25px;
+}
+
+.modal-sign .form__title-sign {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.modal-sign .form__submit-btn-sign {
+  background: var(--dark-color);
+  color: var(--white-color);
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  margin-bottom: 25px;
+  border-radius: 20px;
+  border: none;
+  padding: 0.5rem;
+  font-family: inherit;
+  font-size: 14px;
+  position: relative;
+}
+
+.modal-sign .form__email-sign {
+  position: relative;
+}
+
+.modal-sign input {
+  display: block;
+  width: 100%;
+  margin-bottom: 25px;
+  height: 35px;
+  border-radius: 20px;
+  border: none;
+  background: #f2f2f2;
+  padding: 10px;
+  font-family: inherit;
+  font-size: 14px;
+  position: relative;
+}
+
+.modal-sign input:after {
+  position: absolute;
+  content: "a***";
+}
+
+.modal-sign input:focus {
+  outline: none;
+}
+
+.modal-sign a {
+  position: relative;
+}
+
+.modal-sign .confirm__password {
+    display: none;
+}
+
+.modal-sign .form__name {
+  display: none;
+}
+
 /*===== HOME =====*/
 .home {
   border-color: var(--dark-color-lighten);
@@ -1063,4 +1195,8 @@ card-wrapper{
   .product-content{
       padding-top: 0;
   }
+}
+
+.logo {
+  width: 70px;
 }

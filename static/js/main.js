@@ -50,18 +50,19 @@ window.onscroll = () => {
 
 /*===== Modal =====*/
 const open = document.getElementById('open');
+const opensign = document.getElementById('opensign');
 const close = document.getElementById('close');
+const closesign = document.getElementById('closesign');
 const modal = document.getElementById('modal_container');
-const modalTitle = document.getElementById("modal-title");
-const confirmPass = document.getElementById("confirm-pass");
-const loginBtn = document.getElementById("login-btn");
-const createLink = document.getElementById("create-link");
-const logName = document.getElementById("log-name");
-const logForm = document.getElementById("login-form");
+const modalsign = document.getElementById('modal_container-sign');
 
 
 open.addEventListener('click', () => {
     modal.classList.add('show');
+});
+
+opensign.addEventListener('click', () => {
+    modalsign.classList.add('show');
 });
 
 close.addEventListener('click', () => {
@@ -69,13 +70,7 @@ close.addEventListener('click', () => {
     location.reload();
 });
 
-function signUp() {
-    modalTitle.innerHTML = "Create an account";
-    confirmPass.style.display = "block";
-    confirmPass.value = "";
-    loginBtn.innerHTML = "Sign Up";
-    createLink.style.display = "none";
-    logName.style.display = "block";
-    logName.value = "";
-    logForm.action = "/signup";
-}
+closesign.addEventListener('click', () => {
+    modalsign.classList.remove('show');
+    location.reload();
+});
