@@ -69,14 +69,16 @@ def logout(request):
 
 
 def postQuestion(request):
-    if request.method == "POST":
-        title = request.POST.get("title")
-        about = request.POST.get("about")
-        new = Quentions(title=title, about=about,
-                        dateTimeOfPost=datetime.now())
-        new.save()
-        return alert(request, True, "Post added", "Wait for others response", "/")
-    return render(request, "postQuestion.html")
+    if request.session.get("log"):
+        if request.method == "POST":
+            title = request.POST.get("title")
+            about = request.POST.get("about")
+            new = Quentions(title=title, about=about, uID=request.session.get(
+                "sId"), dateTimeOfPost=datetime.now())
+            new.save()
+            return alert(request, True, "Post added", "Wait for others response", "/")
+        return render(request, "postQuestion.html")
+    return redirect(index)
 
 
 def profile(request):
