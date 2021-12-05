@@ -49,7 +49,7 @@
 
             {% if request.session.log %}
             <div class="nav__shop">
-                <i class='bx bx-face' onclick="location.href='/viewProfile'"></i>
+                <i class='bx bx-face' onclick="location.href='/profile'"></i>
             </div>
             {% endif %}
         </nav>
@@ -86,14 +86,6 @@
     <!-- Signup Modal -->
     <div class="modal-container-sign" id="modal_container-sign">
         <div class="modal-sign">
-            <!-- {% if request.session.log %}
-            <h1>Create an account</h1>
-            <a href="/logout" class="modalBtn">Logout</a>
-            <button class="modalBtn" id="close-sign">
-                Close me
-            </button>
-            {% else %}
-            <h1 id="modal-title">Hey, there!</h1> -->
 
             <h1 id="modal-title">Create an account</h1>
 
@@ -117,7 +109,6 @@
             <button class="modalBtn" id="closesign">
                 Close me
             </button>
-            {% endif %}
         </div>
     </div>
 

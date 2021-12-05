@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Profile{% endblock title %}
+
+{% block body %}
+<br> <br> <br>
+<h1>Name:- {{user.name}}</h1>
+<h2>Email:- {{user.regNumber}}@cgu-odisha.ac.in</h2>
+<h2>Reg Number:- {{user.regNumber}}</h2>
+<h2>Branch:- {{user.branch}}</h2>
+<h2>Date & time of join:- {{user.dateTimeOfJoin}}</h2>
+{% endblock body %}

@@ -44,7 +44,8 @@ def userLogin(request, isStudent, uId, password):
         return alert(request, False, "Signup first", "Create an account to continue", "/")
     if check_password(password, user.password):
         request.session['log'] = True
-        request.session['uId'] = uId
+        request.session['sId'] = str(user.sID)
+        request.session['name'] = user.name
         return redirect(index)
     return alert(request, False, "Password not matched", "", "/")
 
@@ -62,7 +63,8 @@ def login(request):
 
 def logout(request):
     del request.session['log']
-    del request.session['uId']
+    del request.session['sId']
+    del request.session['name']
     return redirect(index)
 
 
@@ -75,6 +77,14 @@ def postQuestion(request):
         new.save()
         return alert(request, True, "Post added", "Wait for others response", "/")
     return render(request, "postQuestion.html")
+
+
+def profile(request):
+    if request.session.get("log"):
+        user = Students.objects.filter(sID=request.session.get("sId")).first()
+        myDict = {"user": user}
+        return render(request, "profile.html", myDict)
+    return redirect(index)
 
 
 def alert(request, isSuccess, msg, about, link):
