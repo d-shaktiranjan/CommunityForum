@@ -85,6 +85,11 @@ def profile(request):
     if request.session.get("log"):
         user = Students.objects.filter(sID=request.session.get("sId")).first()
         myDict = {"user": user}
+        questions = Quentions.objects.filter(
+            uID=request.session.get("sId")).all()
+        myDict["totalQuestions"] = len(questions)
+        if len(questions) > 0:
+            myDict["questionList"] = questions
         return render(request, "profile.html", myDict)
     return redirect(index)
 
