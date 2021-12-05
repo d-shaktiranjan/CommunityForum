@@ -41,15 +41,15 @@
                         <a id="open" class="nav__log">Log Out</a>
                         {% else %}
                         <a id="open" class="nav__log">Log In</a>
-                        {% endif %}
                     </li>
                     <li class="nav__item"><a id="opensign" class="nav__log">Sign Up</a></li>
+                    {% endif %}
                 </ul>
             </div>
 
             {% if request.session.log %}
             <div class="nav__shop">
-                <i class='bx bx-face' onclick="location.href='/viewCart'"></i>
+                <i class='bx bx-face' onclick="location.href='/viewProfile'"></i>
             </div>
             {% endif %}
         </nav>

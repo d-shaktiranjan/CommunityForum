@@ -6,7 +6,8 @@ from datetime import datetime
 
 
 def index(request):
-    return HttpResponse(f"Hey user - {request.session.get('uId')}")
+    # return HttpResponse(f"Hey user - {request.session.get('uId')}")
+    return render(request, "index.html")
 
 
 def signup(request):
@@ -26,6 +27,7 @@ def signup(request):
                                   password=make_password(password), branch="", dateTimeOfJoin=datetime.now())
             newTeacher.save()
             return HttpResponse(f"{name} is a Teacher added")
+        return HttpResponse("Pas & con not match")
     return render(request, "signup.html")
 
 
@@ -46,12 +48,12 @@ def userLogin(request, isStudent, uId, password):
 def login(request):
     if request.method == "POST":
         userType = request.POST.get("type")
-        password = request.POST.get("pass")
+        password = request.POST.get("password")
         mail = request.POST.get("mail")
         uId = str(mail).split("@")
-        isStudent = True if userType == "student" else False
-        return userLogin(request, isStudent, uId[0], password)
-    return render(request, "login.html")
+        # isStudent = True if userType == "student" else False
+        return userLogin(request, True, uId[0], password)
+    return redirect(index)
 
 
 def logout(request):
