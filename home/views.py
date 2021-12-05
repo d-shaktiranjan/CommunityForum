@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect, HttpResponse
 from home.models import Students, Teachers, Quentions
 from django.contrib.auth.hashers import make_password, check_password
 from datetime import datetime
+
+from home.utils import generateSalt
 # Create your views here.
 
 
@@ -22,11 +24,11 @@ def signup(request):
         if password == conPassword:
             if userType == "student":
                 newStudent = Students(
-                    name=name, regNumber=regNumber, password=make_password(password), branch="CSE", dateTimeOfJoin=datetime.now())
+                    name=name, regNumber=regNumber, password=make_password(password+generateSalt(uId)), branch="CSE", dateTimeOfJoin=datetime.now())
                 newStudent.save()
                 return HttpResponse(f"{name} is a student added")
             newTeacher = Teachers(name=name, mailId=uId,
-                                  password=make_password(password), branch="CSE", dateTimeOfJoin=datetime.now())
+                                  password=make_password(password+generateSalt(uId)), branch="CSE", dateTimeOfJoin=datetime.now())
             newTeacher.save()
             return HttpResponse(f"{name} is a Teacher added")
         return HttpResponse("Pas & con not match")
@@ -54,7 +56,7 @@ def login(request):
         mail = request.POST.get("mail")
         uId = str(mail).split("@")
         # isStudent = True if userType == "student" else False
-        return userLogin(request, True, uId[0], password)
+        return userLogin(request, True, uId[0], password+generateSalt(mail))
     return redirect(index)
 
 
