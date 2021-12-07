@@ -14,6 +14,7 @@ class Students(models.Model):
     password = models.TextField()
     branch = models.CharField(max_length=10)
     dateTimeOfJoin = models.DateTimeField()
+    reactionRecord = models.JSONField(blank=True, null=True)
 
 
 class Teachers(models.Model):
@@ -24,6 +25,7 @@ class Teachers(models.Model):
     password = models.TextField()
     branch = models.CharField(max_length=10)
     dateTimeOfJoin = models.DateTimeField()
+    reactionRecord = models.JSONField(blank=True, null=True)
 
 
 class Quentions(models.Model):
