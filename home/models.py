@@ -14,8 +14,8 @@ class Students(models.Model):
     password = models.TextField()
     branch = models.CharField(max_length=10)
     dateTimeOfJoin = models.DateTimeField()
-    likeRecord = models.JSONField(blank=True, null=True)
-    dislikeRecord = models.JSONField(blank=True, null=True)
+    questionRecord = models.JSONField(blank=True, null=True)
+    answerRecord = models.JSONField(blank=True, null=True)
 
 
 class Teachers(models.Model):
@@ -26,8 +26,8 @@ class Teachers(models.Model):
     password = models.TextField()
     branch = models.CharField(max_length=10)
     dateTimeOfJoin = models.DateTimeField()
-    likeRecord = models.JSONField(blank=True, null=True)
-    dislikeRecord = models.JSONField(blank=True, null=True)
+    questionRecord = models.JSONField(blank=True, null=True)
+    answerRecord = models.JSONField(blank=True, null=True)
 
 
 class Quentions(models.Model):
