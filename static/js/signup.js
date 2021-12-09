@@ -1,6 +1,6 @@
-let typeCheck = () => {
-    let userType = document.getElementById('student').checked;
-    let uId = document.getElementById('uId');
+let typeCheck = (type, id) => {
+    let userType = document.getElementById(type).checked;
+    let uId = document.getElementById(id);
     if (userType) {
         uId.type = "number";
         uId.placeholder = "Reg.No";
@@ -8,6 +8,14 @@ let typeCheck = () => {
         uId.type = "text";
         uId.placeholder = "sk.mishra";
     }
+}
+
+let signupType = () => {
+    typeCheck("student", "uId");
+}
+
+let loginType = () => {
+    typeCheck("lStudent", "mail");
 }
 
 let passCheck = () => {
