@@ -11,10 +11,7 @@
     <!-- ===== CSS ===== -->
     {% load static %}
     <link rel="shortcut icon" href="{% static 'img/logo.png' %}" type="image/x-icon">
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-
-    <!-- ===== BOX ICONS ===== -->
-    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="{% static 'css/loginSignup.css' %}">
 
     <title>{% block title %}{% endblock title %}</title>
     {% block link %}{% endblock link %}
@@ -22,101 +19,11 @@
 
 <body>
 
-    <!--===== HEADER =====-->
-    <header class="l-header" id="header">
-        <nav class="nav bd-grid">
-            <div class="nav__toggle" id="nav-toggle">
-                <i class='bx bxs-grid'></i>
-            </div>
-
-            <!-- <img class="logo" src="{% static 'img/logo.png' %}" alt=""> -->
-            <a href="/" class="logo"><img src=" {% static 'img/logo.png' %}" alt=""></a>
-            <a href="/" class="nav__logo">CV Raman Community Forum</a>
-
-            <div class="nav__menu" id="nav-menu">
-                <ul class="nav__list">
-                    <li class="nav__item"><a href="/" class="nav__link">Home</a></li>
-                    <li class="nav__item">
-                        {% if request.session.log %}
-                        <a id="open" class="nav__log">Log Out</a>
-                        {% else %}
-                        <a id="open" class="nav__log">Log In</a>
-                    </li>
-                    <li class="nav__item"><a id="opensign" class="nav__log">Sign Up</a></li>
-                    {% endif %}
-                </ul>
-            </div>
-
-            {% if request.session.log %}
-            <div class="nav__shop">
-                <i class='bx bx-face' onclick="location.href='/profile'"></i>
-            </div>
-            {% endif %}
-        </nav>
-    </header>
-
-    <!-- Login Modal -->
-
-    <div class="modal-container" id="modal_container">
-        <div class="modal">
-            {% if request.session.log %}
-            <h1>Hello, {{request.session.name}}!</h1>
-            <a href="/logout" class="modalBtn">Logout</a>
-            <button class="modalBtn" id="close">
-                Close me
-            </button>
-            {% else %}
-            <h1 id="modal-title">Hey, there!</h1>
-
-
-            <form action="/login" class="login" id="login-form" method="POST">
-                {% csrf_token %}
-                <input class="form__email" type="email" placeholder="something@email.com" name="mail" required />
-                <input class="form__password" type="password" placeholder="Password" name="password" required />
-                <button class="form__submit-btn" id="login-btn" type="submit">Log In
-                </button>
-            </form>
-            <button class="modalBtn" id="close">
-                Close me
-            </button>
-            {% endif %}
-        </div>
-    </div>
-
-    <!-- Signup Modal -->
-    <div class="modal-container-sign" id="modal_container-sign">
-        <div class="modal-sign">
-
-            <h1 id="modal-title">Create an account</h1>
-
-
-            <form action="/signup" class="login" id="login-form-sign" method="POST">
-                {% csrf_token %}
-                <!-- <input type="radio" name="type" id="teacher" value="teacher" required onclick="typeCheck()">
-                <label for="teacher">Teacher</label>
-                <input type="radio" name="type" id="student" value="student" required checked onclick="typeCheck()">
-                <label for="student">student</label> -->
-                <input class="form__name-sign" id="log-name-sign" type="text" placeholder="John Smith" name="name"
-                    value="" required />
-                <input class="form__email-sign" type="email" placeholder="registration-number@cgu.in" name="mail"
-                    required />
-                <input class="form__password-sign" type="password" placeholder="Password" name="password" required />
-                <input class="confirm__password-sign" id="confirm-pass-sign" type="password" name="conPassword"
-                    placeholder="Confirm Password" value="" required />
-                <button class="form__submit-btn-sign" id="login-btn-sign" type="submit">Sign Up
-                </button>
-            </form>
-            <button class="modalBtn" id="closesign">
-                Close me
-            </button>
-        </div>
-    </div>
-
     {% block body %}
     {% endblock body %}
 
     <!--===== JS =====-->
-    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/loginSignup.js' %}"></script>
 
 </body>
 
