@@ -1,3 +1,5 @@
 def generateSalt(mail):
-    salt = "123"  # for temp use
+    salt = "@"
+    salt += mail[::2]+"#"
+    salt += mail[-3:]+"&"
     return salt
