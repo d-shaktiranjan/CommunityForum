@@ -14,6 +14,7 @@
     <div class="container" id="container">
         <div class="form-container sign-up-container">
             <form method="POST" action="/signup">
+                {% csrf_token %}
                 <h1>Create Account</h1>
                 <div class="acc-radio">
                     <div class="acc">
@@ -27,13 +28,13 @@
                         <label for="teacher">Teacher</label>
                     </div>
                 </div>
-                <input type="text" placeholder="Name" />
+                <input type="text" placeholder="Name" name="name" />
                 <div class="mail-wrapper">
-                    <input class="form-mail" type="number" placeholder="Reg.No" id="uId" />
+                    <input class="form-mail" type="number" placeholder="Reg.No" id="uId" name="mail" />
                     <span>@cgu-odisha.ac.in</span>
                 </div>
-                <input type="password" placeholder="Password" />
-                <input type="password" placeholder="Confirm Password" />
+                <input type="password" placeholder="Password" name="password" />
+                <input type="password" placeholder="Confirm Password" name="conPassword" />
                 <button>Sign Up</button>
             </form>
         </div>
