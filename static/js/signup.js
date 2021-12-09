@@ -3,10 +3,10 @@ let typeCheck = () => {
     let uId = document.getElementById('uId');
     if (userType) {
         uId.type = "number";
-        uId.placeholder = "Registration Number";
+        uId.placeholder = "Reg.No";
     } else {
         uId.type = "text";
-        uId.placeholder = "Teacher Name";
+        uId.placeholder = "sk.mishra";
     }
 }
 
