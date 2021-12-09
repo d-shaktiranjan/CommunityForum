@@ -18,12 +18,12 @@
                 <h1>Create Account</h1>
                 <div class="acc-radio">
                     <div class="acc">
-                        <input class="radio-btn" type="radio" name="acc-type" id="student" required
+                        <input class="radio-btn" type="radio" name="acc-type" value="student" id="student" required
                             onclick="signupType()">
                         <label for="student">Student</label>
                     </div>
                     <div class="acc">
-                        <input class="radio-btn" type="radio" name="acc-type" id="teacher" required
+                        <input class="radio-btn" type="radio" name="acc-type" value="teacher" id="teacher" required
                             onclick="signupType()">
                         <label for="teacher">Teacher</label>
                     </div>
@@ -39,25 +39,26 @@
             </form>
         </div>
         <div class="form-container sign-in-container">
-            <form action="#">
+            <form method="POST" action="/login">
+                {% csrf_token %}
                 <h1>Sign in</h1>
                 <div class="acc-radio">
                     <div class="acc">
-                        <input class="radio-btn" type="radio" name="acc-type" id="lStudent" required
+                        <input class="radio-btn" type="radio" name="acc-type" value="student" id="lStudent" required
                             onclick="loginType()">
-                        <label for="student">Student</label>
+                        <label for="lStudent">Student</label>
                     </div>
                     <div class="acc">
-                        <input class="radio-btn" type="radio" name="acc-type" id="lTeacher" required
+                        <input class="radio-btn" type="radio" name="acc-type" value="teacher" id="lTeacher" required
                             onclick="loginType()">
-                        <label for="teacher">Teacher</label>
+                        <label for="lTeacher">Teacher</label>
                     </div>
                 </div>
                 <div class="mail-wrapper">
-                    <input class="form-mail" type="number" placeholder="Reg.No" id="mail" name="mail"/>
+                    <input class="form-mail" type="number" placeholder="Reg.No" id="mail" name="mail" required />
                     <span>@cgu-odisha.ac.in</span>
                 </div>
-                <input type="password" placeholder="Password" />
+                <input type="password" placeholder="Password" name="password" required />
                 <button>Sign In</button>
             </form>
         </div>

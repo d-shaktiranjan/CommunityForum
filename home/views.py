@@ -9,13 +9,12 @@ from home.utils import generateSalt
 
 def index(request):
     # return HttpResponse(f"Hey user - {request.session.get('uId')}")
-    return render(request, "index.html")
+    return render(request, "loginSignup.html")
 
 
 def signup(request):
     if request.method == "POST":
-        userType = request.POST.get("type")
-        userType = "student"  # TODO
+        userType = request.POST.get("acc-type")
         name = request.POST.get("name")
         password = request.POST.get("password")
         conPassword = request.POST.get("conPassword")
@@ -44,7 +43,10 @@ def userLogin(request, isStudent, uId, password):
         return alert(request, False, "Signup first", "Create an account to continue", "/")
     if check_password(password, user.password):
         request.session['log'] = True
-        request.session['sId'] = str(user.sID)
+        if isStudent:
+            request.session['uId'] = str(user.sID)
+        else:
+            request.session['uId'] = str(user.tID)
         request.session['name'] = user.name
         return redirect(index)
     return alert(request, False, "Password not matched", "", "/")
@@ -52,18 +54,17 @@ def userLogin(request, isStudent, uId, password):
 
 def login(request):
     if request.method == "POST":
-        userType = request.POST.get("type")
+        userType = request.POST.get("acc-type")
         password = request.POST.get("password")
         mail = request.POST.get("mail")
-        uId = str(mail).split("@")
-        # isStudent = True if userType == "student" else False
-        return userLogin(request, True, uId[0], password+generateSalt(mail))
+        isStudent = True if userType == "student" else False
+        return userLogin(request, isStudent, mail, password+generateSalt(mail))
     return redirect(index)
 
 
 def logout(request):
     del request.session['log']
-    del request.session['sId']
+    del request.session['uId']
     del request.session['name']
     return redirect(index)
 
