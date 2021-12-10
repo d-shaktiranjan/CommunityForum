@@ -38,13 +38,13 @@
             </div>
 
             <div class="post">
-                <div class="post-child post-title">{{item.title}}</div>
+                <div class="post-child post-title"><a href="/postView/{{item.qID}}">{{item.title}}</a></div>
                 <div class="post-child post-content">
                     {{item.about}}
                 </div>
                 <div class="post-child post-extras">
                     <div class="comment">
-                        <a class="comment-link" href="">
+                        <a class="comment-link" href="/postView/{{item.qID}}">
                             <i class="comment-icon fa-regular fa-message"></i>
                             <span class="comment-text">{{item.comments}}</span>
                         </a>

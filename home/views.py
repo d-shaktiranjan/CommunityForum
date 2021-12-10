@@ -112,8 +112,17 @@ def profile(request):
     return redirect(index)
 
 
-def postView(request):
-    return render(request, "postView.html")
+def postView(request, slug):
+    post = Quentions.objects.filter(qID=slug).first()
+    if post.byStudent:
+        user = Students.objects.filter(sID=post.uID).first()
+    else:
+        user = Teachers.objects.filter(tID=post.uID).first()
+    sendDict = {
+        "post": post,
+        "name": user.name,
+    }
+    return render(request, "postView.html", sendDict)
 
 
 def addLike(request):

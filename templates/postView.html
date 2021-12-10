@@ -16,22 +16,22 @@
                 <ul class="vote-icons">
                     <li>
                         <a href="">
-                            <i class="vote-icon fa-regular fa-thumbs-up"></i>
+                            <i class="vote-icon fa-regular fa-thumbs-up"> {{post.likeCount}}</i>
                         </a>
                     </li>
                     <li>Vote</li>
                     <li>
                         <a href="">
-                            <i class="vote-icon fa-regular fa-thumbs-down"></i>
+                            <i class="vote-icon fa-regular fa-thumbs-down"> {{post.disLikeCount}}</i>
                         </a>
                     </li>
                 </ul>
             </div>
 
             <div class="post">
-                <div class="post-child post-title">Post Title</div>
+                <div class="post-child post-title">{{post.title}}</div>
                 <div class="post-child post-content">
-                    What happens if i drink bleach?
+                    {{post.about}}
                 </div>
                 <div class="post-child post-extras">
                     <!-- <div class="comment">
@@ -43,11 +43,11 @@
 
                     <div class="poster-container">
                         <span class="poster">
-                            by XYZ
+                            by {{name}}
                             <span class="badge badge-student">👩‍🎓</span>
                             <!-- <span class="badge badge-teacher">👩‍🏫</span> -->
                         </span>
-                        <span class="post-time">30 minutes ago</span>
+                        <span class="post-time"><strong>On </strong>{{post.dateTimeOfPost}}</span>
                     </div>
                 </div>
             </div>
