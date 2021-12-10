@@ -1,0 +1,48 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #24252A;
+    border-radius: 1.25rem;
+    margin: 0.5rem 0.5rem 0;
+}
+
+li, a {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    text-decoration: none;
+    color: #edf0f1;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 10%;
+}
+
+.nav-links {
+    list-style: none;
+}
+
+.nav-links li {
+    display: inline-block;
+    padding: 0px 20px;
+}
+
+.nav-icons {
+    transition: all 0.3s ease 0s;
+}
+
+.nav-icons:hover {
+    color: #FF4B2B;
+}
+
+.sign-in {
+    background-color: #FF4B2B;
+    padding: 0.75rem;
+    border-radius: 2rem;
+}

@@ -8,6 +8,11 @@
     <!-- ===== SWEET ALERTS 2 ===== -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.20/dist/sweetalert2.all.min.js"></script>
 
+    <!-- ===== GOOGLE FONTS ===== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800&display=swap" rel="stylesheet">
+
     <!-- ===== CSS ===== -->
     {% load static %}
     <link rel="shortcut icon" href="{% static 'img/logo.png' %}" type="image/x-icon">
@@ -19,10 +24,29 @@
 <body>
 
     {% block body %}
+    <header>
+        <a href="">CV Raman Community Forum</a>
+        <nav>
+            <ul class="nav-links">
+                <li>
+                    <a href="">
+                        <i class="nav-icons fa-solid fa-moon"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <i class="nav-icons fa-regular fa-user"></i></i>
+                    </a>
+                </li>
+                <li><a class="sign-in" href="">Sign In</a></li>
+            </ul>
+        </nav>
+    </header>
     {% endblock body %}
 
-    <!--===== JS =====-->
-    <script src="{% static 'js/loginSignup.js' %}"></script>
+    <!--===== FONT AWESOME =====-->
+    <script src="https://kit.fontawesome.com/e34468298e.js" crossorigin="anonymous"></script>
+    {% comment %} <script src="{% static 'js/loginSignup.js' %}"></script> {% endcomment %}
 
 </body>
 
