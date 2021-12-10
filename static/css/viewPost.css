@@ -35,7 +35,8 @@ a {
 .post-container {
     display: flex;
     align-items: baseline;
-    background-color: rgb(243, 241, 241);
+    background-color: rgb(253, 121, 98);
+    color: rgb(255, 255, 255);
     margin: 0 0 2rem;
     width: 70vw;
     padding: 1rem;
