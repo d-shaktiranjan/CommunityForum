@@ -9,7 +9,9 @@ body {
 }
 
 main {
-    margin-top: 20vh;
+    margin-top: 15vh;
+    display: flex;
+    flex-direction: column;
 }
 
 li {
@@ -27,13 +29,14 @@ a {
     width: 100vw;
     justify-content: center;
     align-items: center;
+    /* margin-bottom: 20px; */
 }
 
 .post-container {
     display: flex;
     align-items: baseline;
     background-color: rgb(243, 241, 241);
-    margin: 0 0 0.75rem;
+    margin: 0 0 2rem;
     width: 70vw;
     padding: 1rem;
     border-radius: 0.75rem;
@@ -68,6 +71,7 @@ a {
     display: flex;
     flex-direction: column;
     padding: 1.25rem;
+    width: 100%;
 }
 
 .post-child {
@@ -122,5 +126,43 @@ a {
     width: 100%;
     font-weight: 500;
     font-size: 14px;
-    margin-left: 10px;
+    /* margin-left: 10px; */
+}
+
+.comment-container {
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    margin: 0 0 0.75rem;
+}
+
+.comment-content {
+    display: flex;
+    flex-direction: column;
+    width: 70vw;
+    padding: 2.5rem;
+    background-color: rgb(243, 241, 241);
+    border-radius: 0.75rem;
+}
+
+.comment-time {
+    font-size: 13px;
+}
+
+.commentor {
+    display: flex;
+    justify-content: space-between;
+}
+
+.comment-author {
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.comment-content-child {
+    margin: 5px;
+}
+
+.comment-text {
+    font-size: 14px;
 }

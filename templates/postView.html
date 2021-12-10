@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block title %}Post Title{% endblock title %}
+
+{% block link %}
+<link rel="stylesheet" href="{% static 'css/viewPost.css' %}">
+{% endblock link %}
+
+{% block body %}
+
+<main>
+    <div class="complete-post">
+        <div class="post-container">
+            <div class="vote">
+                <ul class="vote-icons">
+                    <li>
+                        <a href="">
+                            <i class="vote-icon fa-regular fa-thumbs-up"></i>
+                        </a>
+                    </li>
+                    <li>Vote</li>
+                    <li>
+                        <a href="">
+                            <i class="vote-icon fa-regular fa-thumbs-down"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="post">
+                <div class="post-child post-title">Post Title</div>
+                <div class="post-child post-content">
+                    What happens if i drink bleach?
+                </div>
+                <div class="post-child post-extras">
+                    <!-- <div class="comment">
+                        <a class="comment-link" href="">
+                            <i class="comment-icon fa-regular fa-message"></i>
+                            <span class="comment-text">5</span>
+                        </a>
+                    </div> -->
+
+                    <div class="poster-container">
+                        <span class="poster">
+                            by XYZ
+                            <span class="badge badge-student">👩‍🎓</span>
+                            <!-- <span class="badge badge-teacher">👩‍🏫</span> -->
+                        </span>
+                        <span class="post-time">30 minutes ago</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="comment-container">
+        <div class="comment-content">
+            <div class="comment-content-child commentor">
+                <span class="comment-author">XYZ 👩‍🎓</span>
+                <span class="comment-time">30 minutes ago</span>
+            </div>
+            <div class="comment-content-child comment-text-container">
+                <span class="comment-text">This is a comment.</span>
+            </div>
+        </div>
+    </div>
+</main>
+
+{% endblock body %}
