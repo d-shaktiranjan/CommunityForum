@@ -2,10 +2,57 @@
 
 {% block title %}CVR | Forum{% endblock title %}
 
+{% block link %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock link %}
+
 {% block body %}
 
 <main>
-    <h1>Test</h1>
+    <div class="complete-post">
+        <div class="post-container">
+            <div class="vote">
+                <ul class="vote-icons">
+                    <li>
+                        <a href="">
+                            <i class="vote-icon fa-regular fa-thumbs-up"></i>
+                        </a>
+                    </li>
+                    <li>Vote</li>
+                    <li>
+                        <a href="">
+                            <i class="vote-icon fa-regular fa-thumbs-down"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="post">
+                <div class="post-child post-title">Post Title</div>
+                <div class="post-child post-content">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore eligendi quae, blanditiis
+                    necessitatibus iste minima, aspernatur laboriosam asperiores reiciendis
+                </div>
+                <div class="post-child post-extras">
+                    <div class="comment">
+                        <a class="comment-link" href="">
+                            <i class="comment-icon fa-regular fa-message"></i>
+                            <span class="comment-text">5</span>
+                        </a>
+                    </div>
+
+                    <div class="poster-container">
+                        <span class="poster">
+                            by XYZ
+                            <span class="badge badge-student">👩‍🎓</span>
+                            <!-- <span class="badge badge-teacher">👩‍🏫</span> -->
+                        </span>
+                        <span class="post-time">30 minutes ago</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </main>
 
 {% endblock body %}

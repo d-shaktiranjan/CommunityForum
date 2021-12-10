@@ -1,0 +1,126 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+main {
+    margin-top: 20vh;
+}
+
+li {
+    list-style: none;
+    padding: 0.5rem;
+}
+
+a {
+    text-decoration: none;
+}
+
+.complete-post {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+}
+
+.post-container {
+    display: flex;
+    align-items: baseline;
+    background-color: rgb(243, 241, 241);
+    margin: 0 0 0.75rem;
+    width: fit-content;
+    padding: 1rem;
+    border-radius: 0.75rem;
+}
+
+.vote {
+    text-align: center;
+}
+
+.vote-icons {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: fit-content;
+    align-items: center;
+}
+
+.vote-icon {
+    color: black;
+    font-size: 1.35rem;
+}
+
+.fa-thumbs-up:hover {
+    color: #f36e54;
+}
+
+.fa-thumbs-down:hover {
+    color: #1b18dd;
+}
+
+.post {
+    display: flex;
+    flex-direction: column;
+    padding: 1.25rem;
+}
+
+.post-child {
+    margin: 5px;
+}
+
+.post-title {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.post-content {
+    font-size: 14px;
+}
+
+.post-extras {
+    display: flex;
+    align-items: center;
+}
+
+.comment {
+    background-color: #f36e54;
+    width: fit-content;
+    padding: 0.4rem;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease 0s;
+}
+
+.comment:hover {
+    background-color: #e75b42;
+}
+
+.comment-link {
+    display: flex;
+    padding: 0.25rem;
+}
+
+.comment-text {
+    font-size: 12px;
+    margin-left: 10px;
+}
+
+
+.comment-link {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+}
+
+.poster-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    font-weight: 500;
+    font-size: 14px;
+    margin-left: 10px;
+}
