@@ -34,11 +34,13 @@ class Quentions(models.Model):
     qID = models.UUIDField(blank=False, primary_key=True,
                            default=uuid.uuid4, editable=False)
     uID = models.CharField(max_length=36)
+    byStudent = models.BooleanField(default=True)
     title = models.CharField(max_length=30)
     about = models.TextField()
     dateTimeOfPost = models.DateTimeField()
     likeCount = models.IntegerField(default=0)
     disLikeCount = models.IntegerField(default=0)
+    comments = models.IntegerField(default=0)
 
 
 class Answers(models.Model):
@@ -46,6 +48,7 @@ class Answers(models.Model):
                            default=uuid.uuid4, editable=False)
     uID = models.CharField(max_length=36)
     qID = models.CharField(max_length=36, default=None)
+    byStudent = models.BooleanField(default=True)
     ans = models.TextField()
     dateTimeOfPost = models.DateTimeField()
     likeCount = models.IntegerField(default=0)

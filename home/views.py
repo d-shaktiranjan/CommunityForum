@@ -8,8 +8,19 @@ from home.utils import generateSalt
 
 
 def index(request):
-    # return HttpResponse(f"Hey user - {request.session.get('uId')}")
-    return render(request, "index.html")
+    allQuestions = Quentions.objects.all()
+    nameList = []
+    for item in allQuestions:
+        if item.byStudent:
+            user = Students.objects.filter(sID=item.uID).first()
+        else:
+            user = Teachers.objects.filter(tID=item.uID).first()
+        nameList.append(user.name)
+    sendDict = {
+        "post": allQuestions,
+        "postNameMix": zip(allQuestions, nameList),
+    }
+    return render(request, "index.html", sendDict)
 
 
 def loginSignup(request):
