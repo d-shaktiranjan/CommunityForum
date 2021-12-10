@@ -99,6 +99,10 @@ def profile(request):
     return redirect(index)
 
 
+def postView(request):
+    return render(request, "postView.html")
+
+
 def alert(request, isSuccess, msg, about, link):
     myDict = {
         "msg": msg,
