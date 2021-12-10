@@ -44,8 +44,9 @@
                     <div class="poster-container">
                         <span class="poster">
                             by {{name}}
-                            <span class="badge badge-student">👩‍🎓</span>
-                            <!-- <span class="badge badge-teacher">👩‍🏫</span> -->
+                            {% if not post.byStudent %}
+                            <span class="badge badge-teacher">👩‍🏫</span>
+                            {% endif %}
                         </span>
                         <span class="post-time"><strong>On </strong>{{post.dateTimeOfPost}}</span>
                     </div>
@@ -54,17 +55,19 @@
         </div>
     </div>
 
+    {% for item,name in mixList %}
     <div class="comment-container">
         <div class="comment-content">
             <div class="comment-content-child commentor">
-                <span class="comment-author">XYZ 👩‍🎓</span>
-                <span class="comment-time">30 minutes ago</span>
+                <span class="comment-author">{{name}} {% if not item.byStudent %}👩‍🏫{% endif %}</span>
+                <span class="comment-time"><strong>On</strong> {{item.dateTimeOfPost}}</span>
             </div>
             <div class="comment-content-child comment-text-container">
-                <span class="comment-text">This is a comment.</span>
+                <span class="comment-text">{{item.ans}}</span>
             </div>
         </div>
     </div>
+    {% endfor %}
 </main>
 
 {% endblock body %}

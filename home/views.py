@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from home.models import Students, Teachers, Quentions
+from home.models import Answers, Students, Teachers, Quentions
 from django.contrib.auth.hashers import make_password, check_password
 from datetime import datetime
 
@@ -118,9 +118,18 @@ def postView(request, slug):
         user = Students.objects.filter(sID=post.uID).first()
     else:
         user = Teachers.objects.filter(tID=post.uID).first()
+    comments = Answers.objects.filter(qID=slug).all()
+    commentUsers = []
+    for item in comments:
+        if item.byStudent:
+            cUser = Students.objects.filter(sID=item.uID).first()
+        else:
+            cUser = Teachers.objects.filter(tID=item.uID).first()
+        commentUsers.append(cUser.name)
     sendDict = {
         "post": post,
         "name": user.name,
+        "mixList": zip(comments, commentUsers),
     }
     return render(request, "postView.html", sendDict)
 
