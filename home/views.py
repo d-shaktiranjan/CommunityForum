@@ -63,6 +63,7 @@ def userLogin(request, isStudent, uId, password):
         else:
             request.session['uId'] = str(user.tID)
         request.session['name'] = user.name
+        request.session['isStudent'] = isStudent
         return redirect(index)
     return alert(request, False, "Password not matched", "", "/")
 

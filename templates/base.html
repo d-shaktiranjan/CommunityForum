@@ -35,12 +35,16 @@
                         <i class="nav-icons fa-solid fa-moon"></i>
                     </a>
                 </li>
+                {% if request.session.log %}
                 <li>
                     <a class="nav-link-child" href="/profile">
                         <i class="nav-icons fa-regular fa-user"></i></i>
                     </a>
                 </li>
+                <li><a class="nav-link-child sign-in" href="/logout">Logout</a></li>
+                {% else %}
                 <li><a class="nav-link-child sign-in" href="/loginSignup">Sign In</a></li>
+                {% endif %}
             </ul>
         </nav>
     </header>
