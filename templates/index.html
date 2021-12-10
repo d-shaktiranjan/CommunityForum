@@ -19,7 +19,7 @@
                         <form action="/addLike" method="post">
                             {% csrf_token %}
                             <input type="hidden" name="qID" value="{{item.qID}}">
-                            <button>
+                            <button {% if not request.session.log %}disabled{% endif %}>
                                 <i class="vote-icon fa-regular fa-thumbs-up"> {{item.likeCount}}</i>
                             </button>
                         </form>
@@ -29,7 +29,7 @@
                         <form action="/addDisLike" method="post">
                             {% csrf_token %}
                             <input type="hidden" name="qID" value="{{item.qID}}">
-                            <button>
+                            <button {% if not request.session.log %}disabled{% endif %}>
                                 <i class="vote-icon fa-regular fa-thumbs-down"> {{item.disLikeCount}}</i>
                             </button>
                         </form>
