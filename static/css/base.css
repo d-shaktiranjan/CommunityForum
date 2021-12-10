@@ -6,10 +6,9 @@
 
 header {
     background-color: #24252A;
-    height: 15vh;
 }
 
-li, a {
+.header-title, .nav-link-child {
     font-family: 'Montserrat', sans-serif;
     font-size: 16px;
     text-decoration: none;
