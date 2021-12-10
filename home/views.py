@@ -9,6 +9,10 @@ from home.utils import generateSalt
 
 def index(request):
     # return HttpResponse(f"Hey user - {request.session.get('uId')}")
+    return render(request, "index.html")
+
+
+def loginSignup(request):
     return render(request, "loginSignup.html")
 
 
