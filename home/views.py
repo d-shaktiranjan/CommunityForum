@@ -4,6 +4,7 @@ from django.contrib.auth.hashers import make_password, check_password
 from datetime import datetime
 
 from home.utils import generateSalt
+from home.reaction import giveReaction
 # Create your views here.
 
 
@@ -113,6 +114,28 @@ def profile(request):
 
 def postView(request):
     return render(request, "postView.html")
+
+
+def addLike(request):
+    if request.session.get("log"):
+        if request.method == "POST":
+            contentId = request.POST.get("qID")
+            userId = request.session.get('uId')
+            isStudent = request.session.get('isStudent')
+            status = giveReaction(isStudent, userId, True, contentId, True)
+            return redirect(index)
+    return redirect(index)
+
+
+def addDisLike(request):
+    if request.session.get("log"):
+        if request.method == "POST":
+            contentId = request.POST.get("qID")
+            userId = request.session.get('uId')
+            isStudent = request.session.get('isStudent')
+            status = giveReaction(isStudent, userId, True, contentId, False)
+            return redirect(index)
+    return redirect(index)
 
 
 def alert(request, isSuccess, msg, about, link):

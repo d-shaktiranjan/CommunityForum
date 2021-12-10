@@ -15,7 +15,9 @@ def getRecord(isStudent, userID, isQuestion):
 
 
 def isReacted(isStudent, userID, isQuestion, contentID):
-    records = getRecord(isStudent, userID, isQuestion, contentID)
+    records = getRecord(isStudent, userID, isQuestion)
+    if records is None:
+        return False
     if contentID in records.keys():
         return True
     return False
@@ -24,18 +26,32 @@ def isReacted(isStudent, userID, isQuestion, contentID):
 def giveReaction(isStudent, userID, isQuestion, contentID, isLiked):
     if isReacted(isStudent, userID, isQuestion, contentID):
         return False
-    try:
-        records = getRecord(isStudent, userID, isQuestion, contentID)
-        if isQuestion:
-            about = Quentions.objects.filter(qID=contentID).first()
-        else:
-            about = Answers.objects.filter(aID=contentID).first()
+
+    if isStudent:
+        user = Students.objects.filter(sID=userID).first()
+    else:
+        user = Teachers.objects.filter(tID=userID).first()
+
+    if isQuestion:
+        about = Quentions.objects.filter(qID=contentID).first()
         if isLiked:
-            records[contentID] = True
             about.likeCount += 1
+            oldData = user.questionRecord
+            if oldData is None:
+                user.questionRecord = {
+                    contentID: True
+                }
+            user.questionRecord[contentID] = True
         else:
-            records[contentID] = False
             about.disLikeCount += 1
-        return True
-    except:
-        return False
+            oldData = user.questionRecord
+            if oldData is None:
+                user.questionRecord = {
+                    contentID: False
+                }
+            user.questionRecord[contentID] = False
+        user.save()
+        about.save()
+    else:
+        about = Answers.objects.filter(aID=contentID).first()
+    return True
