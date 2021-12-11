@@ -20,7 +20,8 @@
                             {% csrf_token %}
                             <input type="hidden" name="qID" value="{{item.qID}}">
                             <button class="vote-btn" {% if not request.session.log %}disabled{% endif %}>
-                                <i class="vote-icon fa-regular fa-thumbs-up"> {{item.likeCount}}</i>
+                                <i class="vote-icon fa-regular fa-thumbs-up"></i>
+                                {{item.likeCount}}
                             </button>
                         </form>
                     </li>
@@ -30,7 +31,8 @@
                             {% csrf_token %}
                             <input type="hidden" name="qID" value="{{item.qID}}">
                             <button class="vote-btn" {% if not request.session.log %}disabled{% endif %}>
-                                <i class="vote-icon fa-regular fa-thumbs-down"> {{item.disLikeCount}}</i>
+                                <i class="vote-icon fa-regular fa-thumbs-down"></i>
+                                {{item.disLikeCount}}
                             </button>
                         </form>
                     </li>

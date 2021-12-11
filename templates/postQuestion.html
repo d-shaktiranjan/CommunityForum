@@ -2,11 +2,19 @@
 
 {% block title %}Login{% endblock title %}
 
+{% load static %}
+{% block link %}
+<link rel="stylesheet" href="{% static 'css/postQuestion.css' %}">
+{% endblock link %}
+
 {% block body %}
 <form action="" method="POST">
     {% csrf_token %}
-    <input type="text" name="title" id="title">
-    <textarea name="about" id="about" cols="30" rows="10"></textarea>
-    <button type="submit">Post</button>
+    <div class="post-question-container">
+        <input class="question-child q-title" type="text" name="title" id="title" placeholder="Post Title">
+        <textarea class="question-child q-text" name="about" id="about" cols="30" rows="10"
+            placeholder="Content"></textarea>
+        <button class="question-child q-btn" type="submit">Post</button>
+    </div>
 </form>
 {% endblock body %}
