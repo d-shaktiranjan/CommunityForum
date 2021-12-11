@@ -60,13 +60,13 @@ a {
     font-size: 1.35rem;
 }
 
-.fa-thumbs-up:hover {
+/* .fa-thumbs-up:hover {
     color: #f36e54;
 }
 
 .fa-thumbs-down:hover {
     color: #1b18dd;
-}
+} */
 
 .post {
     display: flex;
@@ -166,4 +166,43 @@ a {
 
 .comment-text {
     font-size: 14px;
+}
+
+.comment-box-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+}
+
+.comment-box {
+    width: 70vw;
+    height: 100px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    margin-bottom: 0.5rem;
+}
+
+.comment-box-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.post-comment-btn {
+    width: 5rem;
+    height: 2rem;
+    margin-bottom: 1rem;
+    border: none;
+    background-color: rgb(253, 121, 98);
+    color: white;
+    border-radius: 0.75rem;
+    cursor: pointer;
+}
+
+.post-vote-counter {
+    color: black;
 }

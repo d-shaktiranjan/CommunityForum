@@ -4,7 +4,7 @@
 
 {% load static %}
 {% block link %}
-<link rel="stylesheet" href="{% static 'css/viewPost.css' %}">
+<link rel="stylesheet" href="{% static 'css/postView.css' %}">
 {% endblock link %}
 
 {% block body %}
@@ -15,14 +15,16 @@
             <div class="vote">
                 <ul class="vote-icons">
                     <li>
-                        <a href="">
-                            <i class="vote-icon fa-regular fa-thumbs-up"> {{post.likeCount}}</i>
+                        <a class="post-vote-counter" href="">
+                            <i class="vote-icon fa-regular fa-thumbs-up"></i>
+                            {{post.likeCount}}
                         </a>
                     </li>
                     <li> </li>
                     <li>
-                        <a href="">
-                            <i class="vote-icon fa-regular fa-thumbs-down"> {{post.disLikeCount}}</i>
+                        <a class="post-vote-counter" href="">
+                            <i class="vote-icon fa-regular fa-thumbs-down"></i>
+                            {{post.disLikeCount}}
                         </a>
                     </li>
                 </ul>
@@ -52,6 +54,16 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div class="comment-box-container">
+        <div class="comment-box-form">
+            <textarea class="comment-box" name="about" id="about" cols="30" rows="10" placeholder="Comment"></textarea>
+            <button class="post-comment-btn">
+                <i class="fa-regular fa-newspaper"></i>
+                Post
+            </button>
         </div>
     </div>
 
