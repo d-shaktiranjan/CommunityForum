@@ -8,6 +8,7 @@
     {% load static %}
     <link rel="shortcut icon" href="{% static 'img/logo.png' %}" type="image/x-icon">
     <link rel="stylesheet" href="{% static 'css/loginSignup.css' %}">
+    <script src="https://kit.fontawesome.com/e34468298e.js" crossorigin="anonymous"></script>
     <title>CGU | 👋</title>
 </head>
 
@@ -61,7 +62,12 @@
                 </div>
                 <input type="password" placeholder="Password" name="password" required />
                 <button>Sign In</button>
+                <a class="back-link" href="">
+                    <i class="fa-solid fa-angles-left"></i>
+                    Go Back
+                </a>
             </form>
+
         </div>
         <div class="overlay-container">
             <div class="overlay">

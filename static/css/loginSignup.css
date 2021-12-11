@@ -220,3 +220,12 @@ input {
 .container.right-panel-active .overlay-right {
 	transform: translateX(20%);
 }
+
+.back-link {
+	font-size: 1rem;
+	transition: 0.3s ease;
+}
+
+.back-link:hover {
+	color: #FF4B2B;
+}
