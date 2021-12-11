@@ -25,6 +25,8 @@ def index(request):
 
 
 def loginSignup(request):
+    if request.session.get("log"):
+        return redirect(index)
     return render(request, "loginSignup.html")
 
 
@@ -83,6 +85,7 @@ def logout(request):
     del request.session['log']
     del request.session['uId']
     del request.session['name']
+    del request.session['isStudent']
     return redirect(index)
 
 
@@ -91,12 +94,13 @@ def postQuestion(request):
         if request.method == "POST":
             title = request.POST.get("title")
             about = request.POST.get("about")
+            isStudent = request.session.get("isStudent")
             new = Quentions(title=title, about=about, uID=request.session.get(
-                "sId"), dateTimeOfPost=datetime.now())
+                "uId"), byStudent=isStudent, dateTimeOfPost=datetime.now())
             new.save()
             return alert(request, True, "Post added", "Wait for others response", "/")
         return render(request, "postQuestion.html")
-    return redirect(index)
+    return redirect(loginSignup)
 
 
 def profile(request):
