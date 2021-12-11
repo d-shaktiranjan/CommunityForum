@@ -15,11 +15,21 @@ header {
     color: #edf0f1;
 }
 
+.header-title {
+    display: flex;
+    align-items: center;
+}
+
+.header-logo {
+    width: 70px;
+    margin-right: 20px;
+}
+
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 30px 10%;
+    padding: 10px 5%;
 }
 
 .nav-links {
