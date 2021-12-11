@@ -103,6 +103,19 @@ def postQuestion(request):
     return redirect(loginSignup)
 
 
+def postComment(request):
+    if request.session.get("log"):
+        if request.method == "POST":
+            about = request.POST.get("about")
+            qID = request.POST.get("qID")
+            isStudent = request.session.get("isStudent")
+            uID = request.session.get("uId")
+            newComment = Answers(
+                uID=uID, qID=qID, byStudent=isStudent, ans=about, dateTimeOfPost=datetime.now())
+            newComment.save()
+    return alert(request, True, "Added !", "", f"/postView/{qID}")
+
+
 def profile(request):
     if request.session.get("log"):
         user = Students.objects.filter(sID=request.session.get("sId")).first()
@@ -134,6 +147,7 @@ def postView(request, slug):
         "post": post,
         "name": user.name,
         "mixList": zip(comments, commentUsers),
+        "slug": slug,
     }
     return render(request, "postView.html", sendDict)
 

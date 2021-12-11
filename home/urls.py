@@ -12,4 +12,5 @@ urlpatterns = [
     path('postView/<slug:slug>', views.postView, name="postView"),
     path('addLike', views.addLike, name="addLike"),
     path('addDisLike', views.addDisLike, name="addDisLike"),
+    path('postComment', views.postComment, name="postComment"),
 ]

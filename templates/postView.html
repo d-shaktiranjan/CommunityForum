@@ -56,16 +56,22 @@
             </div>
         </div>
     </div>
-
-    <div class="comment-box-container">
-        <div class="comment-box-form">
-            <textarea class="comment-box" name="about" id="about" cols="30" rows="10" placeholder="Comment"></textarea>
-            <button class="post-comment-btn">
-                <i class="fa-regular fa-newspaper"></i>
-                Post
-            </button>
+    {% if request.session.log %}
+    <form action="/postComment" method="post">
+        {% csrf_token %}
+        <div class="comment-box-container">
+            <div class="comment-box-form">
+                <input type="hidden" name="qID" value="{{slug}}">
+                <textarea class="comment-box" name="about" id="about" cols="30" rows="10"
+                    placeholder="Comment"></textarea>
+                <button class="post-comment-btn">
+                    <i class="fa-regular fa-newspaper"></i>
+                    Post
+                </button>
+            </div>
         </div>
-    </div>
+    </form>
+    {% endif %}
 
     {% for item,name in mixList %}
     <div class="comment-container">
