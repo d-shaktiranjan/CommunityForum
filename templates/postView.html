@@ -15,17 +15,25 @@
             <div class="vote">
                 <ul class="vote-icons">
                     <li>
-                        <a class="post-vote-counter" href="">
-                            <i class="vote-icon fa-regular fa-thumbs-up"></i>
-                            {{post.likeCount}}
-                        </a>
+                        <form action="/addLike" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="qID" value="{{slug}}">
+                            <button class="post-vote-counter">
+                                <i class="vote-icon fa-regular fa-thumbs-up"></i>
+                                {{post.likeCount}}
+                            </button>
+                        </form>
                     </li>
                     <li> </li>
                     <li>
-                        <a class="post-vote-counter" href="">
-                            <i class="vote-icon fa-regular fa-thumbs-down"></i>
-                            {{post.disLikeCount}}
-                        </a>
+                        <form action="/addDisLike" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="qID" value="{{slug}}">
+                            <button class="post-vote-counter">
+                                <i class="vote-icon fa-regular fa-thumbs-down"></i>
+                                {{post.disLikeCount}}
+                            </button>
+                        </form>
                     </li>
                 </ul>
             </div>
