@@ -10,6 +10,7 @@ urlpatterns = [
     path('profile', views.profile, name="profile"),
     path('loginSignup', views.loginSignup, name="loginSignup"),
     path('postView/<slug:slug>', views.postView, name="postView"),
+    path('deletePost/<slug:slug>', views.deletePost, name="deletePost"),
     path('addLike', views.addLike, name="addLike"),
     path('addDisLike', views.addDisLike, name="addDisLike"),
     path('postComment', views.postComment, name="postComment"),

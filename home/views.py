@@ -184,6 +184,20 @@ def addDisLike(request):
     return redirect(index)
 
 
+def deletePost(request, slug):
+    post = Quentions.objects.filter(qID=slug).first()
+
+    if request.session.get("log"):
+        areYouOwner = post.uID == request.session.get("uId")
+    else:
+        areYouOwner = False
+
+    if areYouOwner:
+        post.delete()
+        return redirect(index)
+    return alert(request, False, "Error!", "You are not allowed to delete this", "/")
+
+
 def alert(request, isSuccess, msg, about, link):
     myDict = {
         "msg": msg,
