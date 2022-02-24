@@ -24,7 +24,7 @@ def index(request):
         }
         return render(request, "index.html", sendDict)
     except:
-        return render(request,"index.html")
+        return render(request, "index.html")
 
 
 def loginSignup(request):
@@ -146,11 +146,18 @@ def postView(request, slug):
         else:
             cUser = Teachers.objects.filter(tID=item.uID).first()
         commentUsers.append(cUser.name)
+
+    if request.session.get("log"):
+        areYouOwner = post.uID == request.session.get("uId")
+    else:
+        areYouOwner = False
+
     sendDict = {
         "post": post,
         "name": user.name,
         "mixList": zip(comments, commentUsers),
         "slug": slug,
+        "areYouOwner": areYouOwner,
     }
     return render(request, "postView.html", sendDict)
 

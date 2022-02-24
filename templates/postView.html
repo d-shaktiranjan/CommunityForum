@@ -12,6 +12,15 @@
 <main>
     <div class="complete-post">
         <div class="post-container">
+            
+            {% if areYouOwner %}
+            <div class="postOptions">
+                <button>Edit</button>
+                <button>Delete</button>
+                <button disabled>Fixed</button>
+            </div>
+            {% endif %}
+
             <div class="vote">
                 <ul class="vote-icons">
                     <li>
