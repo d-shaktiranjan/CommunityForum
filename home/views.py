@@ -94,16 +94,46 @@ def logout(request):
 
 def postQuestion(request):
     if request.session.get("log"):
+        type = "new"
         if request.method == "POST":
             title = request.POST.get("title")
             about = request.POST.get("about")
+            type = request.POST.get("type")
             isStudent = request.session.get("isStudent")
-            new = Quentions(title=title, about=about, uID=request.session.get(
-                "uId"), byStudent=isStudent, dateTimeOfPost=datetime.now())
-            new.save()
-            return alert(request, True, "Post added", "Wait for others response", "/")
-        return render(request, "postQuestion.html")
+            if type == "new":
+                new = Quentions(title=title, about=about, uID=request.session.get(
+                    "uId"), byStudent=isStudent, dateTimeOfPost=datetime.now())
+                new.save()
+                return alert(request, True, "Post added", "Wait for others response", "/")
+            else:
+                # handel update part
+                id = request.POST.get("id")
+                postObject = Quentions.objects.filter(qID=id).first()
+                if postObject.uID == request.session.get("uId"):
+                    postObject.title = title
+                    postObject.about = about
+                    postObject.save()
+                    return alert(request, True, "Post updated", "Wait for others response.", "/")
+                else:
+                    return alert(request, False, "Sorry", "You are not allowed to edit this", "/")
+        sendDict = {
+            "type": type,
+            "buttonName": "Post"
+        }
+        return render(request, "postQuestion.html", sendDict)
     return redirect(loginSignup)
+
+
+def editPost(request, slug):
+    postObject = Quentions.objects.filter(qID=slug).first()
+    sendDict = {
+        "type": "edit",
+        "buttonName": "Update",
+        "id": slug,
+        "title": postObject.title,
+        "about": postObject.about,
+    }
+    return render(request, "postQuestion.html", sendDict)
 
 
 def postComment(request):

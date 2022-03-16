@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Login{% endblock title %}
+{% block title %}Add New Post{% endblock title %}
 
 {% load static %}
 {% block link %}
@@ -8,13 +8,16 @@
 {% endblock link %}
 
 {% block body %}
-<form action="" method="POST">
+<form action="/postQuestion" method="POST">
     {% csrf_token %}
     <div class="post-question-container">
-        <input class="question-child q-title" type="text" name="title" id="title" placeholder="Post Title">
-        <textarea class="question-child q-text" name="about" id="about" cols="30" rows="10"
-            placeholder="Content"></textarea>
-        <button class="question-child q-btn" type="submit">Post</button>
+        <input type="hidden" name="type" value="{{type}}">
+        <input type="hidden" name="id" value="{{id}}">
+        <input class="question-child q-title" type="text" name="title" id="title" placeholder="Post Title"
+            value="{{title}}" required>
+        <textarea class="question-child q-text" name="about" id="about" cols="30" rows="10" placeholder="Content"
+            required>{{about}}</textarea>
+        <button class="question-child q-btn" type="submit">{{buttonName}}</button>
     </div>
 </form>
 {% endblock body %}
