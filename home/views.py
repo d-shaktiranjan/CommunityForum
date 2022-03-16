@@ -132,6 +132,7 @@ def editPost(request, slug):
         "id": slug,
         "title": postObject.title,
         "about": postObject.about,
+        "isEdit": True,
     }
     return render(request, "postQuestion.html", sendDict)
 

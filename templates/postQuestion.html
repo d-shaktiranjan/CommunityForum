@@ -10,14 +10,19 @@
 {% block body %}
 <form action="/postQuestion" method="POST">
     {% csrf_token %}
-    <div class="post-question-container">
+    <div class="post-question-container" id="inputDiv">
         <input type="hidden" name="type" value="{{type}}">
         <input type="hidden" name="id" value="{{id}}">
         <input class="question-child q-title" type="text" name="title" id="title" placeholder="Post Title"
             value="{{title}}" required>
         <textarea class="question-child q-text" name="about" id="about" cols="30" rows="10" placeholder="Content"
             required>{{about}}</textarea>
-        <button class="question-child q-btn" type="submit">{{buttonName}}</button>
+        <button class="question-child q-btn" type="submit" id="submitButton">{{buttonName}}</button>
     </div>
 </form>
+
+{% if isEdit %}
+<script src="{% static 'js/postUpdate.js' %}"></script>
+{% endif %}
+
 {% endblock body %}
