@@ -147,6 +147,9 @@ def postComment(request):
             newComment = Answers(
                 uID=uID, qID=qID, byStudent=isStudent, ans=about, dateTimeOfPost=datetime.now())
             newComment.save()
+            questionObject = Quentions.objects.filter(qID=qID).first()
+            questionObject.comments += 1
+            questionObject.save()
     return alert(request, True, "Added !", "", f"/postView/{qID}")
 
 
