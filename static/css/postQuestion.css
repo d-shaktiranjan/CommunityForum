@@ -42,6 +42,11 @@
     transition: 0.3s ease;
 }
 
-.q-btn:hover {
+.q-btn:hover:enabled {
     background-color: #fa755d;
+}
+
+.q-btn:disabled {
+    opacity: 0.5;
+    cursor: default;
 }

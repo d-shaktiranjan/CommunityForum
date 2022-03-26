@@ -6,13 +6,13 @@ let submitButton = document.getElementById("submitButton");
 const oldTitle = title.value;
 const oldAbout = about.value;
 
-submitButton.hidden = true;
+submitButton.disabled = true;
 
 inputDiv.addEventListener("keyup", () => {
     if (oldTitle != title.value || oldAbout != about.value) {
-        submitButton.hidden = false;
+        submitButton.disabled = false;
     }
     else {
-        submitButton.hidden = true;
+        submitButton.disabled = true;
     }
 })
