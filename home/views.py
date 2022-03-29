@@ -230,7 +230,7 @@ def deleteObject(request, slug, isPost):
     if isPost:
         post = Quentions.objects.filter(qID=slug).first()
     else:
-        post = Answers.objects.filter(qID=slug).first()
+        post = Answers.objects.filter(aID=slug).first()
 
     if request.session.get("log"):
         areYouOwner = post.uID == request.session.get("uId")

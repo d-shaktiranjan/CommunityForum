@@ -94,7 +94,7 @@
     <div class="comment-container">
         <div class="comment-content">
             {% if item.uID == request.session.uId %}
-            <button class="post-comment-btn" onclick="location.href='/deleteComment/{{slug}}'">Delete</button>
+            <button class="post-comment-btn" onclick="location.href='/deleteComment/{{item.aID}}'">Delete</button>
             {% endif %}
             <div class="comment-content-child commentor">
                 <span class="comment-author">{{name}} {% if not item.byStudent %}👩‍🏫{% endif %}</span>
