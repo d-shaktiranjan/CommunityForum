@@ -11,6 +11,7 @@ urlpatterns = [
     path('loginSignup', views.loginSignup, name="loginSignup"),
     path('postView/<slug:slug>', views.postView, name="postView"),
     path('deletePost/<slug:slug>', views.deletePost, name="deletePost"),
+    path('deleteComment/<slug:slug>', views.deleteComment, name="deleteComment"),
     path('editPost/<slug:slug>', views.editPost, name="editPost"),
     path('addLike', views.addLike, name="addLike"),
     path('addDisLike', views.addDisLike, name="addDisLike"),

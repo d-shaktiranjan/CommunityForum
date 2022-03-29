@@ -219,7 +219,18 @@ def addDisLike(request):
 
 
 def deletePost(request, slug):
-    post = Quentions.objects.filter(qID=slug).first()
+    return deleteObject(request, slug, True)
+
+
+def deleteComment(request, slug):
+    return deleteObject(request, slug, False)
+
+
+def deleteObject(request, slug, isPost):
+    if isPost:
+        post = Quentions.objects.filter(qID=slug).first()
+    else:
+        post = Answers.objects.filter(qID=slug).first()
 
     if request.session.get("log"):
         areYouOwner = post.uID == request.session.get("uId")
@@ -228,6 +239,10 @@ def deletePost(request, slug):
 
     if areYouOwner:
         post.delete()
+        if not isPost:
+            question = Quentions.objects.filter(qID=post.qID).first()
+            question.comments -= 1
+            question.save()
         return redirect(index)
     return alert(request, False, "Error!", "You are not allowed to delete this", "/")
 

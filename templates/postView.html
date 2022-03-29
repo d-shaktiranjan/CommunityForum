@@ -93,6 +93,9 @@
     {% for item,name in mixList %}
     <div class="comment-container">
         <div class="comment-content">
+            {% if item.uID == request.session.uId %}
+            <button class="post-comment-btn" onclick="location.href='/deleteComment/{{slug}}'">Delete</button>
+            {% endif %}
             <div class="comment-content-child commentor">
                 <span class="comment-author">{{name}} {% if not item.byStudent %}👩‍🏫{% endif %}</span>
                 <span class="comment-time"><strong>On</strong> {{item.dateTimeOfPost}}</span>
