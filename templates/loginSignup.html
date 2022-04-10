@@ -14,6 +14,8 @@
 
 <body>
     <div class="container" id="container">
+
+        <!-- signup -->
         <div class="form-container sign-up-container">
             <form method="POST" action="/signup">
                 {% csrf_token %}
@@ -35,11 +37,24 @@
                     <input class="form-mail" type="number" placeholder="Reg.No" id="uId" name="mail" required />
                     <span>@cgu-odisha.ac.in</span>
                 </div>
+                <label for="branch">Select your branch:</label>
+                <select id="branch" name="branch" required>
+                    <option value="" hidden>--Select--</option>
+                    <option value="CSE">CSE</option>
+                    <option value="CSIT">CSIT</option>
+                    <option value="ETC">ETC</option>
+                    <option value="EE">EE</option>
+                    <option value="ME">ME</option>
+                    <option value="EEE">EEE</option>
+                    <option value="Civil">Civil</option>
+                </select>
                 <input type="password" placeholder="Password" name="password" required />
                 <input type="password" placeholder="Confirm Password" name="conPassword" required />
                 <button>Sign Up</button>
             </form>
         </div>
+
+        <!-- login -->
         <div class="form-container sign-in-container">
             <form method="POST" action="/login">
                 {% csrf_token %}

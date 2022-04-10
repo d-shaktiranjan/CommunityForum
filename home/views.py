@@ -24,7 +24,7 @@ def index(request):
         }
         return render(request, "index.html", sendDict)
     except:
-        return render(request,"index.html")
+        return render(request, "index.html")
 
 
 def loginSignup(request):
@@ -39,12 +39,13 @@ def signup(request):
         name = request.POST.get("name")
         password = request.POST.get("password")
         conPassword = request.POST.get("conPassword")
+        branch = request.POST.get("branch")
         uId = request.POST.get("mail")
         regNumber = uId.split("@")[0]
         if password == conPassword:
             if userType == "student":
                 newStudent = Students(
-                    name=name, regNumber=regNumber, password=make_password(password+generateSalt(uId)), branch="CSE", dateTimeOfJoin=datetime.now())
+                    name=name, regNumber=regNumber, password=make_password(password+generateSalt(uId)), branch=branch, dateTimeOfJoin=datetime.now())
                 newStudent.save()
                 return alert(request, True, "Your account is created", "Now you can login", "/")
             newTeacher = Teachers(name=name, mailId=uId,
