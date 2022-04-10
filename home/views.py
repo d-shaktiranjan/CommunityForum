@@ -3,7 +3,7 @@ from home.models import Answers, Students, Teachers, Quentions
 from django.contrib.auth.hashers import make_password, check_password
 from datetime import datetime
 
-from home.utils import generateSalt
+from home.utils import generateSalt, isNewUser
 from home.reaction import giveReaction
 # Create your views here.
 
@@ -42,6 +42,10 @@ def signup(request):
         branch = request.POST.get("branch")
         uId = request.POST.get("mail")
         regNumber = uId.split("@")[0]
+        newUser = isNewUser(regNumber, True) if userType == "student" else isNewUser(
+            uId, False)
+        if not newUser:
+            return alert(request, False, "You are already registered", "Login with your credentials", "/loginSignup")
         if password == conPassword:
             if userType == "student":
                 newStudent = Students(
