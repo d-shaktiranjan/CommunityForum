@@ -41,6 +41,8 @@ class Quentions(models.Model):
     likeCount = models.IntegerField(default=0)
     disLikeCount = models.IntegerField(default=0)
     comments = models.IntegerField(default=0)
+    isFixed = models.BooleanField(default=False)
+    correntAnswer = models.CharField(max_length=36, blank=True)
 
 
 class Answers(models.Model):

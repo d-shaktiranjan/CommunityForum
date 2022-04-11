@@ -1,6 +1,3 @@
-from turtle import home
-
-
 from home.models import Students, Teachers
 
 
