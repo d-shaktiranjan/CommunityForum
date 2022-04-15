@@ -224,6 +224,8 @@ def addDisLike(request):
 
 
 def deletePost(request, slug):
+    allComments = Answers.objects.filter(qID=slug).all()
+    allComments.delete()
     return deleteObject(request, slug, True)
 
 
