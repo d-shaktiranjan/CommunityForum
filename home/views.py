@@ -155,7 +155,9 @@ def postComment(request):
             questionObject = Quentions.objects.filter(qID=qID).first()
             questionObject.comments += 1
             questionObject.save()
-    return alert(request, True, "Added !", "", f"/postView/{qID}")
+            return alert(request, True, "Added !", "", f"/postView/{qID}")
+        return alert(request, False, "Not allowed", "Go to the post & try to comment", "/")
+    return alert(request, False, "Sorry", "Login to comment", "/")
 
 
 def profile(request):
