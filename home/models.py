@@ -1,3 +1,4 @@
+from pyexpat import model
 from django.db import models
 
 import uuid
@@ -16,6 +17,7 @@ class Students(models.Model):
     dateTimeOfJoin = models.DateTimeField()
     questionRecord = models.JSONField(blank=True, null=True)
     answerRecord = models.JSONField(blank=True, null=True)
+    isVerified = models.BooleanField(default=False)
 
 
 class Teachers(models.Model):
@@ -28,6 +30,7 @@ class Teachers(models.Model):
     dateTimeOfJoin = models.DateTimeField()
     questionRecord = models.JSONField(blank=True, null=True)
     answerRecord = models.JSONField(blank=True, null=True)
+    isVerified = models.BooleanField(default=False)
 
 
 class Quentions(models.Model):
