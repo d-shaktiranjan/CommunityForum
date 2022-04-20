@@ -275,3 +275,12 @@ def deleteObject(request, slug, isPost):
             question.save()
         return redirect(index)
     return alert(request, False, "Error!", "You are not allowed to delete this", "/")
+
+
+def fixPost(request, slug):
+    answer = Answers.objects.filter(aID=slug).first()
+    question = Quentions.objects.filter(qID=answer.qID).first()
+    question.isFixed = True
+    question.correntAnswer = slug
+    question.save()
+    return alert(request, True, "This is fixed", "Now this post is marked as Fixed.", "/")

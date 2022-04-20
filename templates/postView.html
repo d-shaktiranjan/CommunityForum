@@ -79,8 +79,8 @@
         <div class="comment-box-container">
             <div class="comment-box-form">
                 <input type="hidden" name="qID" value="{{slug}}">
-                <textarea class="comment-box" name="about" id="about" cols="30" rows="10"
-                    placeholder="Comment"></textarea>
+                <textarea class="comment-box" name="about" id="about" cols="30" rows="10" placeholder="Comment"
+                    required></textarea>
                 <button class="post-comment-btn">
                     <i class="fa-regular fa-newspaper"></i>
                     Post
@@ -92,12 +92,12 @@
 
     {% for item,name in mixList %}
     <div class="comment-container">
-        
+
         <div class="comment-content">
-            <div class="mark-as-answer">
+            <!-- <div class="mark-as-answer">
                 <i class="fa-solid fa-circle-check"></i>
                 <div class="ans-text">Answer</div>
-            </div>
+            </div> -->
             <div class="comment-content-child commentor">
                 <span class="comment-author">{{name}} {% if not item.byStudent %}👩‍🏫{% endif %}</span>
                 <span class="comment-time"><strong>On</strong> {{item.dateTimeOfPost}}</span>
@@ -106,7 +106,10 @@
                 <span class="comment-text">{{item.ans}}</span>
             </div>
             {% if item.uID == request.session.uId %}
-            <button class="post-comment-btn post-delete-btn" onclick="location.href='/deleteComment/{{item.aID}}'">Delete</button>
+            <button class="post-comment-btn post-delete-btn"
+                onclick="location.href='/deleteComment/{{item.aID}}'">Delete</button>
+            <button class="post-comment-btn post-delete-btn" onclick="location.href='/fixPost/{{item.aID}}'">Fixed by
+                this Answer</button>
             {% endif %}
         </div>
     </div>
