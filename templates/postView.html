@@ -90,14 +90,16 @@
     </form>
     {% endif %}
 
-    {% for item,name in mixList %}
+    {% for item,name,correct in mixList %}
     <div class="comment-container">
 
         <div class="comment-content">
-            <!-- <div class="mark-as-answer">
+            {% if correct %}
+            <div class="mark-as-answer">
                 <i class="fa-solid fa-circle-check"></i>
-                <div class="ans-text">Answer</div>
-            </div> -->
+                <div class="ans-text">Correct Answer</div>
+            </div>
+            {% endif %}
             <div class="comment-content-child commentor">
                 <span class="comment-author">{{name}} {% if not item.byStudent %}👩‍🏫{% endif %}</span>
                 <span class="comment-time"><strong>On</strong> {{item.dateTimeOfPost}}</span>
@@ -108,6 +110,8 @@
             {% if item.uID == request.session.uId %}
             <button class="post-comment-btn post-delete-btn"
                 onclick="location.href='/deleteComment/{{item.aID}}'">Delete</button>
+            {% endif %}
+            {% if areYouOwner %}
             <button class="post-comment-btn post-delete-btn" onclick="location.href='/fixPost/{{item.aID}}'">Fixed by
                 this Answer</button>
             {% endif %}
