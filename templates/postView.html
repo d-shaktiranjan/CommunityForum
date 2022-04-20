@@ -27,7 +27,7 @@
                         <form action="/addLike" method="post">
                             {% csrf_token %}
                             <input type="hidden" name="qID" value="{{slug}}">
-                            <button class="post-vote-counter">
+                            <button class="vote-btn post-vote-counter">
                                 <i class="vote-icon fa-regular fa-thumbs-up"></i>
                                 {{post.likeCount}}
                             </button>
@@ -38,7 +38,7 @@
                         <form action="/addDisLike" method="post">
                             {% csrf_token %}
                             <input type="hidden" name="qID" value="{{slug}}">
-                            <button class="post-vote-counter">
+                            <button class="vote-btn post-vote-counter">
                                 <i class="vote-icon fa-regular fa-thumbs-down"></i>
                                 {{post.disLikeCount}}
                             </button>
@@ -92,10 +92,12 @@
 
     {% for item,name in mixList %}
     <div class="comment-container">
+        
         <div class="comment-content">
-            {% if item.uID == request.session.uId %}
-            <button class="post-comment-btn" onclick="location.href='/deleteComment/{{item.aID}}'">Delete</button>
-            {% endif %}
+            <div class="mark-as-answer">
+                <i class="fa-solid fa-circle-check"></i>
+                <div class="ans-text">Answer</div>
+            </div>
             <div class="comment-content-child commentor">
                 <span class="comment-author">{{name}} {% if not item.byStudent %}👩‍🏫{% endif %}</span>
                 <span class="comment-time"><strong>On</strong> {{item.dateTimeOfPost}}</span>
@@ -103,6 +105,9 @@
             <div class="comment-content-child comment-text-container">
                 <span class="comment-text">{{item.ans}}</span>
             </div>
+            {% if item.uID == request.session.uId %}
+            <button class="post-comment-btn post-delete-btn" onclick="location.href='/deleteComment/{{item.aID}}'">Delete</button>
+            {% endif %}
         </div>
     </div>
     {% endfor %}

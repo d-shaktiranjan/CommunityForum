@@ -3,7 +3,7 @@
 {% block title %}Profile{% endblock title %}
 
 {% block body %}
-<br> <br> <br>
+<!-- <br> <br> <br>
 <h1>Name:- {{user.name}}</h1>
 <h2>Email:- {{user.regNumber}}@cgu-odisha.ac.in</h2>
 <h2>Reg Number:- {{user.regNumber}}</h2>
@@ -15,5 +15,19 @@
 {% for item in questionList %}
 <h2>{{item.title}}</h2>
 {% endfor %}
-{% endif %}
+{% endif %} -->
+
+<div class="profile">
+    <div class="profile-about">
+        <h1 class="profile-name">Name</h1>
+        <ul class="profile-meta">
+            <li class="profile-meta-item">
+                <i class="fa-solid fa-message"></i>
+            </li>
+            <li class="profile-meta-item">
+                <i class="fa-solid fa-newspaper"></i>
+            </li>
+        </ul>
+    </div>
+</div>
 {% endblock body %}
