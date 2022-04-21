@@ -3,7 +3,7 @@ from home.models import Answers, Students, Teachers, Quentions
 from django.contrib.auth.hashers import make_password, check_password
 from datetime import datetime
 
-from home.utils import generateSalt, isNewUser
+from home.utils import generateSalt, isNewUser, isUserVerified, alert
 from home.reaction import giveReaction
 # Create your views here.
 
@@ -99,15 +99,21 @@ def logout(request):
 
 def postQuestion(request):
     if request.session.get("log"):
+        userID = request.session.get("uId")
+        isStudent = request.session.get("isStudent")
+
+        # check is user verified or not
+        if not isUserVerified(request):
+            return alert(request, False, "You are not verified", "Go to profile & verify your account", "/profile")
+
         type = "new"
         if request.method == "POST":
             title = request.POST.get("title")
             about = request.POST.get("about")
             type = request.POST.get("type")
-            isStudent = request.session.get("isStudent")
             if type == "new":
-                new = Quentions(title=title, about=about, uID=request.session.get(
-                    "uId"), byStudent=isStudent, dateTimeOfPost=datetime.now())
+                new = Quentions(title=title, about=about, uID=userID,
+                                byStudent=isStudent, dateTimeOfPost=datetime.now())
                 new.save()
                 return alert(request, True, "Post added", "Wait for others response", "/")
             else:
@@ -144,6 +150,11 @@ def editPost(request, slug):
 
 def postComment(request):
     if request.session.get("log"):
+
+        # check is user verified or not
+        if not isUserVerified(request):
+            return alert(request, False, "You are not verified", "Go to profile & verify your account", "/profile")
+
         if request.method == "POST":
             about = request.POST.get("about")
             qID = request.POST.get("qID")
@@ -205,6 +216,11 @@ def postView(request, slug):
 
 def addLike(request):
     if request.session.get("log"):
+
+        # check is user verified or not
+        if not isUserVerified(request):
+            return alert(request, False, "You are not verified", "Go to profile & verify your account", "/profile")
+
         if request.method == "POST":
             contentId = request.POST.get("qID")
             userId = request.session.get('uId')
@@ -216,6 +232,11 @@ def addLike(request):
 
 def addDisLike(request):
     if request.session.get("log"):
+
+        # check is user verified or not
+        if not isUserVerified(request):
+            return alert(request, False, "You are not verified", "Go to profile & verify your account", "/profile")
+
         if request.method == "POST":
             contentId = request.POST.get("qID")
             userId = request.session.get('uId')
@@ -254,13 +275,3 @@ def deleteObject(request, slug, isPost):
             question.save()
         return redirect(index)
     return alert(request, False, "Error!", "You are not allowed to delete this", "/")
-
-
-def alert(request, isSuccess, msg, about, link):
-    myDict = {
-        "msg": msg,
-        "about": about,
-        "link": link,
-        "status": "success" if isSuccess else "error"
-    }
-    return render(request, "alert.html", myDict)
