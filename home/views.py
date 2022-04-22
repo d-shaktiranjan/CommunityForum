@@ -192,13 +192,14 @@ def postView(request, slug):
         user = Teachers.objects.filter(tID=post.uID).first()
     comments = Answers.objects.filter(qID=slug).all()
     commentUsers = []
+    isCorrectAnswer = []
     for item in comments:
         if item.byStudent:
             cUser = Students.objects.filter(sID=item.uID).first()
         else:
             cUser = Teachers.objects.filter(tID=item.uID).first()
         commentUsers.append(cUser.name)
-
+        isCorrectAnswer.append(str(post.correntAnswer) == str(item.aID))
     if request.session.get("log"):
         areYouOwner = post.uID == request.session.get("uId")
     else:
@@ -207,7 +208,7 @@ def postView(request, slug):
     sendDict = {
         "post": post,
         "name": user.name,
-        "mixList": zip(comments, commentUsers),
+        "mixList": zip(comments, commentUsers, isCorrectAnswer),
         "slug": slug,
         "areYouOwner": areYouOwner,
     }
@@ -275,3 +276,15 @@ def deleteObject(request, slug, isPost):
             question.save()
         return redirect(index)
     return alert(request, False, "Error!", "You are not allowed to delete this", "/")
+
+
+def fixPost(request, slug):
+    if request.session.get("log"):
+        answer = Answers.objects.filter(aID=slug).first()
+        question = Quentions.objects.filter(qID=answer.qID).first()
+        if request.session.get("uId") == question.uID:
+            question.isFixed = True
+            question.correntAnswer = slug
+            question.save()
+            return alert(request, True, "This is fixed", "Now this post is marked as Fixed.", f"/postView/{question.qID}")
+    return redirect(index)
