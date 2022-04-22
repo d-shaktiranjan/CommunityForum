@@ -8,18 +8,23 @@
 {% endblock link %}
 
 {% block body %}
-<form action="/postQuestion" method="POST">
-    {% csrf_token %}
-    <div class="post-question-container" id="inputDiv">
-        <input type="hidden" name="type" value="{{type}}">
-        <input type="hidden" name="id" value="{{id}}">
-        <input class="question-child q-title" type="text" name="title" id="title" placeholder="Post Title"
-            value="{{title}}" required>
-        <textarea class="question-child q-text" name="about" id="about" cols="30" rows="10" placeholder="Content"
-            required>{{about}}</textarea>
-        <button class="question-child q-btn" type="submit" id="submitButton">{{buttonName}}</button>
+<div class="create-post-wrapper">
+    <div class="post-title">
+        Create a Post
     </div>
-</form>
+    <form action="/postQuestion" method="POST">
+        {% csrf_token %}
+        <div class="post-question-wrapper" id="inputDiv">
+            <input type="hidden" name="type" value="{{type}}">
+            <input type="hidden" name="id" value="{{id}}">
+            <input class="question-child q-title" type="text" name="title" id="title" placeholder="Post Title"
+                value="{{title}}" required>
+            <textarea class="question-child q-text" name="about" id="about" cols="30" rows="10" placeholder="Content"
+                required>{{about}}</textarea>
+            <button class="question-child q-btn" type="submit" id="submitButton">{{buttonName}}</button>
+        </div>
+    </form>
+</div>
 
 {% if isEdit %}
 <script src="{% static 'js/postUpdate.js' %}"></script>

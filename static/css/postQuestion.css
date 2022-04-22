@@ -1,20 +1,37 @@
-.post-question-container {
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.create-post-wrapper, .post-question-wrapper {
     display: flex;
     flex-direction: column;
-    /* width: 50vw; */
-    /* justify-content: center; */
-    align-items: center;
+    justify-content: center;
+}
+
+.create-post-wrapper {
     height: 70vh;
-    margin-top: 10rem;
+    align-items: center;
+    padding: 2.5rem;
+}
+
+.create-post-wrapper form, .post-question-wrapper textarea {
+    width: 100%;
+}
+
+.create-post-wrapper .post-title {
+    font-weight: 600;
+}
+
+.post-question-wrapper textarea {
+    resize: none;
 }
 
 .question-child {
-    margin: 15px;
+    margin-top: 10px;
 }
 
 .q-title {
     padding: 0.5rem;
-    /* border: 5px; */
     box-sizing: border-box;
     border: 2px solid #ccc;
     border-radius: 4px;

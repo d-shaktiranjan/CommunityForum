@@ -12,15 +12,6 @@
 <main>
     <div class="complete-post">
         <div class="post-container">
-
-            {% if areYouOwner %}
-            <div class="postOptions">
-                <button onclick="location.href='/editPost/{{slug}}'">Edit</button>
-                <button onclick="location.href='/deletePost/{{slug}}'">Delete</button>
-                <button disabled>Fixed</button>
-            </div>
-            {% endif %}
-
             <div class="vote">
                 <ul class="vote-icons">
                     <li>
@@ -28,7 +19,7 @@
                             {% csrf_token %}
                             <input type="hidden" name="qID" value="{{slug}}">
                             <button class="vote-btn post-vote-counter">
-                                <i class="vote-icon fa-regular fa-thumbs-up"></i>
+                                <i class="fa-regular fa-thumbs-up vote-thumbs"></i>
                                 {{post.likeCount}}
                             </button>
                         </form>
@@ -39,7 +30,7 @@
                             {% csrf_token %}
                             <input type="hidden" name="qID" value="{{slug}}">
                             <button class="vote-btn post-vote-counter">
-                                <i class="vote-icon fa-regular fa-thumbs-down"></i>
+                                <i class="fa-regular fa-thumbs-down vote-thumbs"></i>
                                 {{post.disLikeCount}}
                             </button>
                         </form>
@@ -48,18 +39,38 @@
             </div>
 
             <div class="post">
-                <div class="post-child post-title">{{post.title}}</div>
+                <div class="mark-as-fixed">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <div class="ans-text">Fixed</div>
+                </div>
+                <div class="post-title-wrapper">
+                    <div class="post-child post-title">{{post.title}}</div>
+                    {% if areYouOwner %}
+                    <div class="dropdown" data-dropdown>
+                        <button class="dropdown-three-dot" data-dropdown-button>
+                            <i class="fa-solid fa-ellipsis"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <button class="three-dot-btns" onclick="location.href='/editPost/{{slug}}'">
+                                <i class="fa-solid fa-pencil three-dot-btn-icons"></i>
+                                Edit
+                            </button>
+                            <button class="three-dot-btns" onclick="location.href='/deletePost/{{slug}}'">
+                                <i class="fa-solid fa-trash three-dot-btn-icons"></i>
+                                Delete
+                            </button>
+                            <button class="three-dot-btns" disabled>
+                                <i class="fa-solid fa-bug-slash three-dot-btn-icons"></i>
+                                Fixed
+                            </button>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
                 <div class="post-child post-content">
                     {{post.about}}
                 </div>
                 <div class="post-child post-extras">
-                    <!-- <div class="comment">
-                        <a class="comment-link" href="">
-                            <i class="comment-icon fa-regular fa-message"></i>
-                            <span class="comment-text">5</span>
-                        </a>
-                    </div> -->
-
                     <div class="poster-container">
                         <span class="poster">
                             by {{name}}
@@ -71,6 +82,8 @@
                     </div>
                 </div>
             </div>
+
+            
         </div>
     </div>
     {% if request.session.log %}
@@ -113,4 +126,5 @@
     {% endfor %}
 </main>
 
+<script src="{% static 'js/postView.js' %}"></script>
 {% endblock body %}

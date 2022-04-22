@@ -135,14 +135,10 @@ a {
 
 .post-fab {
     background-color:#f36e54;
-    width:60px;
-    height:60px;
-    border-radius:100%;
-    background:#f36e54;
+    border-radius:2rem;
     border:none;
     outline:none;
     color:#FFF;
-    font-size:36px;
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
     transition:.3s;
     position: fixed;
@@ -151,6 +147,17 @@ a {
     margin: 50px;
     cursor: pointer;
     z-index: 1000;
+    padding: 1.25rem;
+}
+
+.post-fab div {
+    display: flex;
+    align-items: center;
+}
+
+.post-fab div span {
+    margin-left: 10px;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .post-fab:hover {
