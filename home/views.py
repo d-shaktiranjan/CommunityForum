@@ -1,4 +1,3 @@
-from turtle import pos
 from django.shortcuts import render, redirect
 from home.models import Answers, Students, Teachers, Quentions
 from django.contrib.auth.hashers import make_password, check_password
