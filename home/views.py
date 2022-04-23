@@ -5,7 +5,6 @@ from datetime import datetime
 
 from home.utils import generateSalt, isNewUser, isUserVerified, alert
 from home.reaction import giveReaction
-# Create your views here.
 
 
 def index(request):

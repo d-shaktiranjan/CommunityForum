@@ -24,7 +24,7 @@
                             </button>
                         </form>
                     </li>
-                    <li> </li>
+                    <li>Vote</li>
                     <li>
                         <form action="/addDisLike" method="post">
                             {% csrf_token %}
@@ -83,7 +83,6 @@
                 </div>
             </div>
 
-            
         </div>
     </div>
     {% if request.session.log %}
@@ -114,11 +113,11 @@
             </div>
             {% endif %}
             <div class="comment-content-child commentor">
-                <span class="comment-author">{{name}} {% if not item.byStudent %}👩‍🏫{% endif %}</span>
+                <span class="comment-author">{{item.ans}}</span>
                 <span class="comment-time"><strong>On</strong> {{item.dateTimeOfPost}}</span>
             </div>
             <div class="comment-content-child comment-text-container">
-                <span class="comment-text">{{item.ans}}</span>
+                <span class="comment-text">by:- {{name}} {% if not item.byStudent %}👩‍🏫{% endif %}</span>
             </div>
             {% if item.uID == request.session.uId %}
             <button class="post-comment-btn post-delete-btn"
