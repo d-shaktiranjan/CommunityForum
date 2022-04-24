@@ -6,6 +6,9 @@ from datetime import datetime
 from home.utils import generateSalt, isNewUser, isUserVerified, alert
 from home.reaction import giveReaction
 
+from django.core.files.storage import FileSystemStorage
+from os import mkdir
+
 
 def index(request):
     try:
@@ -110,11 +113,13 @@ def postQuestion(request):
             title = request.POST.get("title")
             about = request.POST.get("about")
             type = request.POST.get("type")
+            # handel new post
             if type == "new":
                 new = Quentions(title=title, about=about, uID=userID,
                                 byStudent=isStudent, dateTimeOfPost=datetime.now())
                 new.save()
-                return alert(request, True, "Post added", "Wait for others response", "/")
+                about = {"postID": new.qID}
+                return render(request, "postImage.html", about)
             else:
                 # handel update part
                 id = request.POST.get("id")
@@ -123,7 +128,7 @@ def postQuestion(request):
                     postObject.title = title
                     postObject.about = about
                     postObject.save()
-                    return alert(request, True, "Post updated", "Wait for others response.", "/")
+                    return alert(request, True, "Post updated", "Wait for others response.", "/postImage")
                 else:
                     return alert(request, False, "Sorry", "You are not allowed to edit this", "/")
         sendDict = {
@@ -132,6 +137,18 @@ def postQuestion(request):
         }
         return render(request, "postQuestion.html", sendDict)
     return redirect(loginSignup)
+
+
+def postImage(request):
+    if request.session.get("log") and request.method == "POST" and request.FILES['postImage']:
+        postID = request.POST.get("postID")
+        postImage = request.FILES['postImage']
+        fs = FileSystemStorage()
+        nameList = postImage.name.split(".")
+        imageName = postID+"."+nameList[len(nameList)-1]
+        fs.save(f"static/postImages/{imageName}", postImage)
+        return alert(request, True, "Post Added", "Post Saved with image", "/")
+    return redirect(index)
 
 
 def editPost(request, slug):
