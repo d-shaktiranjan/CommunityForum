@@ -7,6 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% load static %}
     <link rel="shortcut icon" href="{% static 'img/logo.png' %}" type="image/x-icon">
+    
+    <!-- ===== GOOGLE FONTS ===== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="{% static 'css/loginSignup.css' %}">
     <script src="https://kit.fontawesome.com/e34468298e.js" crossorigin="anonymous"></script>
     <title>CGU | 👋</title>
@@ -37,9 +43,8 @@
                     <input class="form-mail" type="number" placeholder="Reg.No" id="uId" name="mail" required />
                     <span>@cgu-odisha.ac.in</span>
                 </div>
-                <label for="branch">Select your branch:</label>
                 <select id="branch" name="branch" required>
-                    <option value="" hidden>--Select--</option>
+                    <option value="" hidden>Branch</option>
                     <option value="CSE">CSE</option>
                     <option value="CSIT">CSIT</option>
                     <option value="ETC">ETC</option>

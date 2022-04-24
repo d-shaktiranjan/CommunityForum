@@ -52,6 +52,7 @@ button {
 	letter-spacing: 1px;
 	text-transform: uppercase;
 	transition: transform 80ms ease-in;
+	margin-top: 15px;
 }
 
 button:active {
@@ -77,8 +78,9 @@ form {
 	text-align: center;
 }
 
-input {
+input, select {
 	background-color: #eee;
+	font: inherit;
 	border: none;
 	padding: 12px 15px;
 	margin: 8px 0;
@@ -125,7 +127,15 @@ input {
 .acc-radio {
     display: flex;
     justify-content: space-evenly;
-    width: 100%;
+	margin: 8px;
+}
+
+.radio-btn {
+	width: fit-content;
+}
+
+.acc {
+	width: 100%;
 }
 
 .sign-up-container {
