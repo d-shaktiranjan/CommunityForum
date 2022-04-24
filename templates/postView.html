@@ -11,6 +11,13 @@
 
 <main>
     <div class="complete-post">
+
+        <!-- post image here -->
+        {% if isImage %}
+        {% static 'postImages' as baseUrl %}
+        <img src="{{baseUrl}}/{{fileName}}" alt="Unable to find">
+        {% endif %}
+        
         <div class="post-container">
             <div class="vote">
                 <ul class="vote-icons">
@@ -39,10 +46,12 @@
             </div>
 
             <div class="post">
+                {% if post.isFixed %}
                 <div class="mark-as-fixed">
                     <i class="fa-solid fa-circle-check"></i>
                     <div class="ans-text">Fixed</div>
                 </div>
+                {% endif %}
                 <div class="post-title-wrapper">
                     <div class="post-child post-title">{{post.title}}</div>
                     {% if areYouOwner %}

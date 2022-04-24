@@ -3,7 +3,7 @@ from home.models import Answers, Students, Teachers, Quentions
 from django.contrib.auth.hashers import make_password, check_password
 from datetime import datetime
 
-from home.utils import generateSalt, isNewUser, isUserVerified, alert
+from home.utils import *
 from home.reaction import giveReaction
 
 from django.core.files.storage import FileSystemStorage
@@ -206,6 +206,8 @@ def postView(request, slug):
         user = Students.objects.filter(sID=post.uID).first()
     else:
         user = Teachers.objects.filter(tID=post.uID).first()
+
+    #  get comments & filter
     comments = Answers.objects.filter(qID=slug).all()
     commentUsers = []
     isCorrectAnswer = []
@@ -221,12 +223,17 @@ def postView(request, slug):
     else:
         areYouOwner = False
 
+    # check for post image
+    aboutImage = isPostImage(post.qID)
+    print(f"return dict {aboutImage}")
     sendDict = {
         "post": post,
         "name": user.name,
         "mixList": zip(comments, commentUsers, isCorrectAnswer),
         "slug": slug,
         "areYouOwner": areYouOwner,
+        "isImage": aboutImage["isPic"],
+        "fileName": aboutImage["fileName"],
     }
     return render(request, "postView.html", sendDict)
 

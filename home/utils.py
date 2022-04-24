@@ -1,6 +1,8 @@
 from home.models import Students, Teachers
 from django.shortcuts import render
 
+from os import listdir
+
 
 def generateSalt(mail):
     salt = "@"
@@ -36,3 +38,18 @@ def isUserVerified(request):
         user = Teachers.objects.filter(tID=userID).first()
     print(user.isVerified)
     return user.isVerified
+
+
+def isPostImage(postID):
+    postID = str(postID)
+    about = {"isPic": False, "fileName": ""}
+    fileList = listdir("static/postImages")
+    postList = []
+    for file in fileList:
+        tempList = file.split(".")
+        postList.append(tempList[0])
+    if postID in postList:
+        about["isPic"] = True
+        about["fileName"] = fileList[postList.index(postID)]
+    print(about)
+    return about
