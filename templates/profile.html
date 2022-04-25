@@ -33,8 +33,8 @@
     <button id="verifyBtn">Verify now</button>
     <form action="" method="post" id="verifyForm">
         {% csrf_token %}
-        <input type="text" name="" id="">
-        <button>Verify</button>
+        <input type="number" name="" id="">
+        <button type="submit">Verify</button>
     </form>
     <script src="{% static 'js/profile.js' %}"></script>
     {% endif %}

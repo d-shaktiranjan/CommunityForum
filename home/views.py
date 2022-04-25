@@ -7,7 +7,6 @@ from home.utils import *
 from home.reaction import giveReaction
 
 from django.core.files.storage import FileSystemStorage
-from os import mkdir
 
 
 def index(request):
