@@ -16,7 +16,7 @@
 <h2>{{item.title}}</h2>
 {% endfor %}
 {% endif %} -->
-
+{% load static %}
 <div class="profile">
     <div class="profile-about">
         <h1 class="profile-name">Name</h1>
@@ -29,5 +29,15 @@
             </li>
         </ul>
     </div>
+    {% if not user.isVerified %}
+    <button id="verifyBtn">Verify now</button>
+    <form action="" method="post" id="verifyForm">
+        {% csrf_token %}
+        <input type="text" name="" id="">
+        <button>Verify</button>
+    </form>
+    <script src="{% static 'js/profile.js' %}"></script>
+    {% endif %}
 </div>
+
 {% endblock body %}
