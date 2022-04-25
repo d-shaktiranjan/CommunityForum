@@ -10,135 +10,150 @@
 {% block body %}
 
 <main>
-    <div class="complete-post">
 
-        <!-- post image here -->
-        {% if isImage %}
-        {% static 'postImages' as baseUrl %}
-        <img src="{{baseUrl}}/{{fileName}}" alt="Unable to find">
-        {% endif %}
+    <div class="body-wrapper">
+        <div class="body-wrapper-child">
+            <div class="complete-post">
+    
+                <div class="post-container">
         
-        <div class="post-container">
-            <div class="vote">
-                <ul class="vote-icons">
-                    <li>
-                        <form action="/addLike" method="post">
-                            {% csrf_token %}
-                            <input type="hidden" name="qID" value="{{slug}}">
-                            <button class="vote-btn post-vote-counter">
-                                <i class="fa-regular fa-thumbs-up vote-thumbs"></i>
-                                {{post.likeCount}}
-                            </button>
-                        </form>
-                    </li>
-                    <li>Vote</li>
-                    <li>
-                        <form action="/addDisLike" method="post">
-                            {% csrf_token %}
-                            <input type="hidden" name="qID" value="{{slug}}">
-                            <button class="vote-btn post-vote-counter">
-                                <i class="fa-regular fa-thumbs-down vote-thumbs"></i>
-                                {{post.disLikeCount}}
-                            </button>
-                        </form>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="post">
-                {% if post.isFixed %}
-                <div class="mark-as-fixed">
-                    <i class="fa-solid fa-circle-check"></i>
-                    <div class="ans-text">Fixed</div>
-                </div>
-                {% endif %}
-                <div class="post-title-wrapper">
-                    <div class="post-child post-title">{{post.title}}</div>
-                    {% if areYouOwner %}
-                    <div class="dropdown" data-dropdown>
-                        <button class="dropdown-three-dot" data-dropdown-button>
-                            <i class="fa-solid fa-ellipsis"></i>
-                        </button>
-                        <div class="dropdown-menu">
-                            <button class="three-dot-btns" onclick="location.href='/editPost/{{slug}}'">
-                                <i class="fa-solid fa-pencil three-dot-btn-icons"></i>
-                                Edit
-                            </button>
-                            <button class="three-dot-btns" onclick="location.href='/deletePost/{{slug}}'">
-                                <i class="fa-solid fa-trash three-dot-btn-icons"></i>
-                                Delete
-                            </button>
-                            <button class="three-dot-btns" disabled>
-                                <i class="fa-solid fa-bug-slash three-dot-btn-icons"></i>
-                                Fixed
-                            </button>
+                    <div class="post-card-container">
+                        <div class="vote">
+                            <ul class="vote-icons">
+                                <li>
+                                    <form action="/addLike" method="post">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="qID" value="{{slug}}">
+                                        <button class="vote-btn post-vote-counter">
+                                            <i class="fa-regular fa-thumbs-up vote-thumbs"></i>
+                                            <!-- {{post.likeCount}} -->
+                                        </button>
+                                    </form>
+                                </li>
+                                <li>Vote</li>
+                                <li>
+                                    <form action="/addDisLike" method="post">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="qID" value="{{slug}}">
+                                        <button class="vote-btn post-vote-counter">
+                                            <i class="fa-regular fa-thumbs-down vote-thumbs"></i>
+                                            <!-- {{post.disLikeCount}} -->
+                                        </button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+            
+                        <div class="post">
+                            {% if post.isFixed %}
+                            <div class="mark-as-fixed">
+                                <i class="fa-solid fa-circle-check"></i>
+                                <div class="ans-text">Fixed</div>
+                            </div>
+                            {% endif %}
+                            <div class="post-title-wrapper">
+                                <div class="post-child post-title">{{post.title}}</div>
+                                {% if areYouOwner %}
+                                <div class="dropdown" data-dropdown>
+                                    <button class="dropdown-three-dot" data-dropdown-button>
+                                        <i class="fa-solid fa-ellipsis"></i>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <button class="three-dot-btns" onclick="location.href='/editPost/{{slug}}'">
+                                            <i class="fa-solid fa-pencil three-dot-btn-icons"></i>
+                                            Edit
+                                        </button>
+                                        <button class="three-dot-btns" onclick="location.href='/deletePost/{{slug}}'">
+                                            <i class="fa-solid fa-trash three-dot-btn-icons"></i>
+                                            Delete
+                                        </button>
+                                        <button class="three-dot-btns" disabled>
+                                            <i class="fa-solid fa-bug-slash three-dot-btn-icons"></i>
+                                            Fixed
+                                        </button>
+                                    </div>
+                                </div>
+                                {% endif %}
+                            </div>
+                            <div class="post-child post-content">
+                                {{post.about}}
+                            </div>
+                            <div class="post-child post-extras">
+                                <div class="poster-container">
+                                    <span class="poster">
+                                        by {{name}}
+                                        {% if not post.byStudent %}
+                                        <span class="badge badge-teacher">👩‍🏫</span>
+                                        {% endif %}
+                                    </span>
+                                    <span class="post-time"><strong>On </strong>{{post.dateTimeOfPost}}</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
+        
+                    <!-- post image here -->
+                    {% if isImage %}
+                    {% static 'postImages' as baseUrl %}
+                    <img src="{{baseUrl}}/{{fileName}}" alt="Unable to find">
                     {% endif %}
+        
                 </div>
-                <div class="post-child post-content">
-                    {{post.about}}
-                </div>
-                <div class="post-child post-extras">
-                    <div class="poster-container">
-                        <span class="poster">
-                            by {{name}}
-                            {% if not post.byStudent %}
-                            <span class="badge badge-teacher">👩‍🏫</span>
-                            {% endif %}
-                        </span>
-                        <span class="post-time"><strong>On </strong>{{post.dateTimeOfPost}}</span>
+            </div>
+            {% if request.session.log %}
+            <form action="/postComment" method="post">
+                {% csrf_token %}
+                <div class="comment-box-container">
+                    <div class="comment-box-form">
+                        <input type="hidden" name="qID" value="{{slug}}">
+                        <textarea class="comment-box" name="about" id="about" cols="30" rows="10" placeholder="Comment"
+                            required></textarea>
+                        <button class="post-comment-btn">
+                            <i class="fa-regular fa-newspaper"></i>
+                            Post
+                        </button>
                     </div>
                 </div>
-            </div>
+            </form>
+            {% endif %}
+        
+            {% for item,name,correct in mixList %}
+            <div class="comment-container">
+        
+                <div class="comment-content">
+                    {% if correct %}
+                    <div class="mark-as-answer">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <div class="ans-text">Correct Answer</div>
+                    </div>
+                    {% endif %}
+                    <div class="comment-content-child commentor">
+                        <span class="comment-author">{{item.ans}}</span>
+                        <span class="comment-time"><strong>On</strong> {{item.dateTimeOfPost}}</span>
+                    </div>
+                    <div class="comment-content-child comment-text-container">
+                        <span class="comment-text">by:- {{name}} {% if not item.byStudent %}👩‍🏫{% endif %}</span>
+                    </div>
 
+                    <div class="comment-btns">
+                        <button class="">
+                            Reply
+                        </button>
+                        {% if item.uID == request.session.uId %}
+                        <button class="post-delete-btn"
+                            onclick="location.href='/deleteComment/{{item.aID}}'">Delete</button>
+                        {% endif %}
+                        {% if areYouOwner %}
+                        <button class="mark-ans-btn" onclick="location.href='/fixPost/{{item.aID}}'">Mark as Answer</button>
+                        {% endif %}
+                    </div>
+                    
+                </div>
+            </div>
+            {% endfor %}
         </div>
     </div>
-    {% if request.session.log %}
-    <form action="/postComment" method="post">
-        {% csrf_token %}
-        <div class="comment-box-container">
-            <div class="comment-box-form">
-                <input type="hidden" name="qID" value="{{slug}}">
-                <textarea class="comment-box" name="about" id="about" cols="30" rows="10" placeholder="Comment"
-                    required></textarea>
-                <button class="post-comment-btn">
-                    <i class="fa-regular fa-newspaper"></i>
-                    Post
-                </button>
-            </div>
-        </div>
-    </form>
-    {% endif %}
-
-    {% for item,name,correct in mixList %}
-    <div class="comment-container">
-
-        <div class="comment-content">
-            {% if correct %}
-            <div class="mark-as-answer">
-                <i class="fa-solid fa-circle-check"></i>
-                <div class="ans-text">Correct Answer</div>
-            </div>
-            {% endif %}
-            <div class="comment-content-child commentor">
-                <span class="comment-author">{{item.ans}}</span>
-                <span class="comment-time"><strong>On</strong> {{item.dateTimeOfPost}}</span>
-            </div>
-            <div class="comment-content-child comment-text-container">
-                <span class="comment-text">by:- {{name}} {% if not item.byStudent %}👩‍🏫{% endif %}</span>
-            </div>
-            {% if item.uID == request.session.uId %}
-            <button class="post-comment-btn post-delete-btn"
-                onclick="location.href='/deleteComment/{{item.aID}}'">Delete</button>
-            {% endif %}
-            {% if areYouOwner %}
-            <button class="post-comment-btn post-delete-btn" onclick="location.href='/fixPost/{{item.aID}}'">Fixed by
-                this Answer</button>
-            {% endif %}
-        </div>
-    </div>
-    {% endfor %}
+    
 </main>
 
 <script src="{% static 'js/postView.js' %}"></script>
