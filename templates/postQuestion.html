@@ -12,7 +12,7 @@
     <div class="post-title">
         Create a Post
     </div>
-    <form action="/postQuestion" method="POST">
+    <form action="/postQuestion" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="post-question-wrapper" id="inputDiv">
             <input type="hidden" name="type" value="{{type}}">
@@ -21,6 +21,11 @@
                 value="{{title}}" required>
             <textarea class="question-child q-text" name="about" id="about" cols="30" rows="10" placeholder="Content"
                 required>{{about}}</textarea>
+
+            <!-- image part -->
+            <label for="isImage">Want to upload Image (Optional)</label>
+            <input type="checkbox" name="isImage" id="isImage">
+            <div id="imageInput"></div>
             <button class="question-child q-btn" type="submit" id="submitButton">{{buttonName}}</button>
         </div>
     </form>
@@ -29,5 +34,6 @@
 {% if isEdit %}
 <script src="{% static 'js/postUpdate.js' %}"></script>
 {% endif %}
+<script src="{% static 'js/postQuestion.js' %}"></script>
 
 {% endblock body %}

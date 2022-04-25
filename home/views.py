@@ -112,13 +112,21 @@ def postQuestion(request):
             title = request.POST.get("title")
             about = request.POST.get("about")
             type = request.POST.get("type")
+            isImage = request.POST.get("isImage")
+
             # handel new post
             if type == "new":
                 new = Quentions(title=title, about=about, uID=userID,
                                 byStudent=isStudent, dateTimeOfPost=datetime.now())
                 new.save()
-                about = {"postID": new.qID}
-                return render(request, "postImage.html", about)
+                if isImage == None:
+                    return alert(request, True, "Post added", "You can also edit the post", f"/postView/{new.qID}")
+                postImage = request.FILES['postImage']
+                fs = FileSystemStorage()
+                nameList = postImage.name.split(".")
+                imageName = str(new.qID)+"."+nameList[len(nameList)-1]
+                fs.save(f"static/postImages/{imageName}", postImage)
+                return alert(request, True, "Post Added", "Post Saved with image", f"/postView/{new.qID}")
             else:
                 # handel update part
                 id = request.POST.get("id")
@@ -136,18 +144,6 @@ def postQuestion(request):
         }
         return render(request, "postQuestion.html", sendDict)
     return redirect(loginSignup)
-
-
-def postImage(request):
-    if request.session.get("log") and request.method == "POST" and request.FILES['postImage']:
-        postID = request.POST.get("postID")
-        postImage = request.FILES['postImage']
-        fs = FileSystemStorage()
-        nameList = postImage.name.split(".")
-        imageName = postID+"."+nameList[len(nameList)-1]
-        fs.save(f"static/postImages/{imageName}", postImage)
-        return alert(request, True, "Post Added", "Post Saved with image", "/")
-    return redirect(index)
 
 
 def editPost(request, slug):
