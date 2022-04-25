@@ -39,6 +39,7 @@ class Quentions(models.Model):
     byStudent = models.BooleanField(default=True)
     title = models.CharField(max_length=30)
     about = models.TextField()
+    category = models.CharField(max_length=10)
     dateTimeOfPost = models.DateTimeField()
     likeCount = models.IntegerField(default=0)
     disLikeCount = models.IntegerField(default=0)

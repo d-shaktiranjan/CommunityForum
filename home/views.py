@@ -1,3 +1,4 @@
+from unicodedata import category
 from django.shortcuts import render, redirect
 from home.models import Answers, Students, Teachers, Quentions
 from django.contrib.auth.hashers import make_password, check_password
@@ -11,7 +12,13 @@ from django.core.files.storage import FileSystemStorage
 
 def index(request):
     try:
-        allQuestions = Quentions.objects.all().order_by('dateTimeOfPost').reverse()
+        branch = request.GET.get("cat")
+        if branch == None:
+            allQuestions = Quentions.objects.all().order_by('dateTimeOfPost').reverse()
+        else:
+            allQuestions = Quentions.objects.filter(
+                category=branch).all().order_by('dateTimeOfPost').reverse()
+
         nameList = []
         voteList = []
         for item in allQuestions:
@@ -115,11 +122,12 @@ def postQuestion(request):
             about = request.POST.get("about")
             type = request.POST.get("type")
             isImage = request.POST.get("isImage")
+            branch = request.POST.get("branch")
 
             # handel new post
             if type == "new":
                 new = Quentions(title=title, about=about, uID=userID,
-                                byStudent=isStudent, dateTimeOfPost=datetime.now())
+                                byStudent=isStudent, dateTimeOfPost=datetime.now(), category=branch)
                 new.save()
                 if isImage == None:
                     return alert(request, True, "Post added", "You can also edit the post", f"/postView/{new.qID}")
