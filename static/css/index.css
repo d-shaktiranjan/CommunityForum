@@ -14,7 +14,7 @@ main {
 
 li {
     list-style: none;
-    padding: 0.5rem;
+    padding: 0.4rem;
 }
 
 a {
@@ -22,12 +22,26 @@ a {
     color: black;
 }
 
+.main-wrapper {
+    width: 70vw;
+}
+
+.posts-wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.complete-posts-wrapper {
+    width: fit-content;
+}
+
 .complete-post {
     display: flex;
     flex-direction: column;
-    width: 100vw;
     justify-content: center;
     align-items: center;
+    width: fit-content;
 }
 
 .post-container {
@@ -35,9 +49,9 @@ a {
     align-items: baseline;
     background-color: rgb(243, 241, 241);
     margin: 0 0 0.75rem;
-    width: 70vw;
-    padding: 1rem;
-    border-radius: 0.75rem;
+    width: 50vw;
+    padding: 0.85rem;
+    border-radius: 0.25rem;
 }
 
 .vote {
@@ -52,15 +66,17 @@ a {
     align-items: center;
 }
 
-.vote-btn {
-    font-family: inherit;
-    font-weight: 500;
-    font-size: 1rem;
+.vote-count {
+    font-size: 0.85rem;
+}
+
+.vote-btn:hover {
+    cursor: pointer;
 }
 
 .vote-icon {
     color: black;
-    font-size: 1.35rem;
+    font-size: 1.2rem;
 }
 
 .fa-thumbs-up:hover {
@@ -74,7 +90,7 @@ a {
 .post {
     display: flex;
     flex-direction: column;
-    padding: 1.25rem;
+    padding: 0.85rem;
     width: 100%;
 }
 
@@ -131,6 +147,15 @@ a {
     font-weight: 500;
     font-size: 14px;
     margin-left: 10px;
+}
+
+.side-content {
+    background-color: rgb(243, 241, 241);
+    height: 300px;
+    width: 300px;
+    margin-left: 0.75rem;
+    border-radius: 0.25rem;
+    position: sticky;
 }
 
 .post-fab {

@@ -15,7 +15,7 @@ body {
 }
 
 .create-post-wrapper form, .post-question-wrapper textarea {
-    width: 100%;
+    width: 40vw;
 }
 
 .create-post-wrapper .post-title {
@@ -49,8 +49,9 @@ body {
 }
 
 .q-btn {
+    font: inherit;
     border: none;
-    background-color: #FF4B2B;
+    background-color: #f36e54;
     padding: 0.75rem;
     border-radius: 2rem;
     color: white;
@@ -60,7 +61,7 @@ body {
 }
 
 .q-btn:hover:enabled {
-    background-color: #fa755d;
+    background-color: #e75b42;
 }
 
 .q-btn:disabled {

@@ -29,7 +29,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 5%;
+    padding: 15px 50px;
 }
 
 .nav-links {
@@ -50,9 +50,14 @@ header {
 }
 
 .sign-in {
-    background-color: #FF4B2B;
+    background-color: #f36e54;
     padding: 0.75rem;
     border-radius: 2rem;
+    transition: .3sec;
+}
+
+.sign-in:hover {
+    background-color: #e75b42;
 }
 
 .vote-btn {
