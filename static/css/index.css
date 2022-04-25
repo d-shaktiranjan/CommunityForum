@@ -112,12 +112,22 @@ a {
     align-items: center;
 }
 
-.comment {
+.comment, .search-btn {
     background-color: #f36e54;
     width: fit-content;
     padding: 0.4rem;
     border-radius: 0.5rem;
     transition: all 0.3s ease 0s;
+}
+
+.search-btn {
+    border: none;
+    padding: 0.6rem;
+    width: 2.5rem;
+    margin-left: 5px;
+    color: white;
+    font: inherit;
+    cursor: pointer;
 }
 
 .comment:hover {
@@ -154,6 +164,7 @@ a {
     height: 300px;
     width: 300px;
     margin-left: 0.75rem;
+    margin-top: 52px;
     border-radius: 0.25rem;
     position: sticky;
 }
@@ -187,4 +198,28 @@ a {
 
 .post-fab:hover {
     background-color: #e75b42;
+}
+
+.body-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    /* width: 100%; */
+}
+
+.search-bar > input {
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    padding: 0.5rem;
+    font: inherit;
+    align-items: center;
+    width: 100%;
 }

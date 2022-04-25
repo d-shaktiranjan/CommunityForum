@@ -10,69 +10,79 @@
 {% block body %}
 
 <main>
-    <div class="posts-wrapper">
-        <div class="complete-posts-wrapper">
-            {% for item,name,vote in postNameMix %}
-            <div class="complete-post">
-                <div class="post-container">
-                    <div class="vote">
-                        <ul class="vote-icons">
-                            <li>
-                                <form action="/addLike" method="post">
-                                    {% csrf_token %}
-                                    <input type="hidden" name="qID" value="{{item.qID}}">
-                                    <button class="vote-btn" {% if not request.session.log %}disabled{% endif %}>
-                                        <i class="vote-icon fa-regular fa-thumbs-up"></i>
-                                        <!-- {{item.likeCount}} -->
-                                    </button>
-                                </form>
-                            </li>
-                            <li class="vote-count">{{vote}}</li>
-                            <li>
-                                <form action="/addDisLike" method="post">
-                                    {% csrf_token %}
-                                    <input type="hidden" name="qID" value="{{item.qID}}">
-                                    <button class="vote-btn" {% if not request.session.log %}disabled{% endif %}>
-                                        <i class="vote-icon fa-regular fa-thumbs-down"></i>
-                                        <!-- {{item.disLikeCount}} -->
-                                    </button>
-                                </form>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="post">
-                        <div class="post-child post-title"><a href="/postView/{{item.qID}}">{{item.title}}</a></div>
-                        <!-- <div class="post-child post-content">
-                            {{item.about}}
-                        </div> -->
-                        <div class="post-child post-extras">
-                            <div class="comment">
-                                <a class="comment-link" href="/postView/{{item.qID}}">
-                                    <i class="comment-icon fa-regular fa-message"></i>
-                                    <span class="comment-text">{{item.comments}}</span>
-                                </a>
-                            </div>
-
-                            <div class="poster-container">
-                                <span class="poster">
-                                    by {{name}}
-                                    {% comment %} <span class="badge badge-student">👩‍🎓</span> {% endcomment %}
-                                    <!-- <span class="badge badge-teacher">👩‍🏫</span> -->
-                                </span>
-                                <span class="post-time">On {{item.dateTimeOfPost}}</span>
+    <div class="body-wrapper">
+        
+        <div class="posts-wrapper">
+            <div class="complete-posts-wrapper">
+                <div class="search-bar">
+                    <input type="text" name="search-bar" id="search-bar" placeholder="Search">
+                    <button class="search-btn">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+                {% for item,name,vote in postNameMix %}
+                <div class="complete-post">
+                    <div class="post-container">
+                        <div class="vote">
+                            <ul class="vote-icons">
+                                <li>
+                                    <form action="/addLike" method="post">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="qID" value="{{item.qID}}">
+                                        <button class="vote-btn" {% if not request.session.log %}disabled{% endif %}>
+                                            <i class="vote-icon fa-regular fa-thumbs-up"></i>
+                                            <!-- {{item.likeCount}} -->
+                                        </button>
+                                    </form>
+                                </li>
+                                <li class="vote-count">{{vote}}</li>
+                                <li>
+                                    <form action="/addDisLike" method="post">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="qID" value="{{item.qID}}">
+                                        <button class="vote-btn" {% if not request.session.log %}disabled{% endif %}>
+                                            <i class="vote-icon fa-regular fa-thumbs-down"></i>
+                                            <!-- {{item.disLikeCount}} -->
+                                        </button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+    
+                        <div class="post">
+                            <div class="post-child post-title"><a href="/postView/{{item.qID}}">{{item.title}}</a></div>
+                            <!-- <div class="post-child post-content">
+                                {{item.about}}
+                            </div> -->
+                            <div class="post-child post-extras">
+                                <div class="comment">
+                                    <a class="comment-link" href="/postView/{{item.qID}}">
+                                        <i class="comment-icon fa-regular fa-message"></i>
+                                        <span class="comment-text">{{item.comments}}</span>
+                                    </a>
+                                </div>
+    
+                                <div class="poster-container">
+                                    <span class="poster">
+                                        by {{name}}
+                                        {% comment %} <span class="badge badge-student">👩‍🎓</span> {% endcomment %}
+                                        <!-- <span class="badge badge-teacher">👩‍🏫</span> -->
+                                    </span>
+                                    <span class="post-time">On {{item.dateTimeOfPost}}</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                {% endfor %}
             </div>
-            {% endfor %}
-        </div>
-
-        <div class="side-content">
-            Test
+    
+            <div class="side-content">
+                Test
+            </div>
         </div>
     </div>
+
 
     <button class="post-fab" onclick="window.location.href='/postQuestion'">
         <div class="fab-text">
