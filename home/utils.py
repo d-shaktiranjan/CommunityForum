@@ -36,7 +36,6 @@ def isUserVerified(request):
         user = Students.objects.filter(sID=userID).first()
     else:
         user = Teachers.objects.filter(tID=userID).first()
-    print(user.isVerified)
     return user.isVerified
 
 

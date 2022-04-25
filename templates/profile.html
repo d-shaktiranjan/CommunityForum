@@ -31,9 +31,9 @@
     </div>
     {% if not user.isVerified %}
     <button id="verifyBtn">Verify now</button>
-    <form action="" method="post" id="verifyForm">
+    <form action="/api/verifyOTP" method="post" id="verifyForm">
         {% csrf_token %}
-        <input type="number" name="" id="">
+        <input type="number" name="otp" id="">
         <button type="submit">Verify</button>
     </form>
     <script src="{% static 'js/profile.js' %}"></script>
