@@ -11,17 +11,19 @@ from django.core.files.storage import FileSystemStorage
 
 def index(request):
     try:
-        allQuestions = Quentions.objects.all()
+        allQuestions = Quentions.objects.all().order_by('dateTimeOfPost').reverse()
         nameList = []
+        voteList = []
         for item in allQuestions:
             if item.byStudent:
                 user = Students.objects.filter(sID=item.uID).first()
             else:
                 user = Teachers.objects.filter(tID=item.uID).first()
+            voteList.append(item.likeCount-item.disLikeCount)
             nameList.append(user.name)
         sendDict = {
             "post": allQuestions,
-            "postNameMix": zip(allQuestions, nameList),
+            "postNameMix": zip(allQuestions, nameList, voteList),
         }
         return render(request, "index.html", sendDict)
     except:
@@ -220,7 +222,6 @@ def postView(request, slug):
 
     # check for post image
     aboutImage = isPostImage(post.qID)
-    print(f"return dict {aboutImage}")
     sendDict = {
         "post": post,
         "name": user.name,
@@ -229,6 +230,7 @@ def postView(request, slug):
         "areYouOwner": areYouOwner,
         "isImage": aboutImage["isPic"],
         "fileName": aboutImage["fileName"],
+        "vote": post.likeCount-post.disLikeCount,
     }
     return render(request, "postView.html", sendDict)
 
