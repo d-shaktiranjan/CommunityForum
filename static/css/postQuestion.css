@@ -18,7 +18,8 @@ body {
     width: 40vw;
 }
 
-.create-post-wrapper .post-title {
+.post-title {
+    font-size: 1.25rem;
     font-weight: 600;
 }
 
@@ -30,41 +31,73 @@ body {
     margin-top: 10px;
 }
 
-.q-title {
-    padding: 0.5rem;
+.q-title, .q-text, select {
     box-sizing: border-box;
     border: 2px solid #ccc;
     border-radius: 4px;
     background-color: #f8f8f8;
+    padding: 0.5rem;
+    font: inherit;
 }
 
 .q-text {
     width: 40%;
     height: 200px;
-    padding: 12px 20px;
-    box-sizing: border-box;
-    border: 2px solid #ccc;
-    border-radius: 4px;
-    background-color: #f8f8f8;
 }
 
-.q-btn {
+.q-btn, .imageInput > label {
     font: inherit;
     border: none;
     background-color: #f36e54;
-    padding: 0.75rem;
-    border-radius: 2rem;
+    padding: 0.6rem;
+    border-radius: 1rem;
     color: white;
-    width: 100px;
     cursor: pointer;
     transition: 0.3s ease;
 }
 
-.q-btn:hover:enabled {
+.q-btn:hover:enabled, .imageInput > label:hover {
     background-color: #e75b42;
 }
 
 .q-btn:disabled {
     opacity: 0.5;
     cursor: default;
+}
+
+.image-upload > div {
+    margin-top: 10px;
+}
+
+.image-upload-confirmation {
+    display: flex;
+    align-items: center;
+}
+
+.image-upload-confirmation > input {
+    margin-right: 10px;
+}
+
+.post-btns > .imageInput > input {
+    width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.post-btns {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.post-submit-margin {
+    margin-left: 5px;
+}
+
+select {
+    width: fit-content;
+    margin-top: 30px;
 }

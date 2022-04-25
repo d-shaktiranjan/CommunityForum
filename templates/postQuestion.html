@@ -17,16 +17,28 @@
         <div class="post-question-wrapper" id="inputDiv">
             <input type="hidden" name="type" value="{{type}}">
             <input type="hidden" name="id" value="{{id}}">
+            <select id="branch" name="branch" required>
+                <option value="" hidden>Category</option>
+                <option value="Category">Category</option>
+                <option value="Category">Category</option>
+            </select>
             <input class="question-child q-title" type="text" name="title" id="title" placeholder="Post Title"
                 value="{{title}}" required>
             <textarea class="question-child q-text" name="about" id="about" cols="30" rows="10" placeholder="Content"
                 required>{{about}}</textarea>
 
             <!-- image part -->
-            <label for="isImage">Want to upload Image (Optional)</label>
-            <input type="checkbox" name="isImage" id="isImage">
-            <div id="imageInput"></div>
-            <button class="question-child q-btn" type="submit" id="submitButton">{{buttonName}}</button>
+            <div class="image-upload">
+                <div class="image-upload-confirmation">
+                    <input type="checkbox" name="isImage" id="isImage">
+                    <label for="isImage">Upload Image (Optional)</label>
+                </div>
+            </div>
+
+            <div class="post-btns">
+                <div class="imageInput" id="imageInput"></div>
+                <button class="q-btn" type="submit" id="submitButton">{{buttonName}}</button>
+            </div>
         </div>
     </form>
 </div>
