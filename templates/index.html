@@ -11,7 +11,7 @@
 
 <main>
     <div class="body-wrapper">
-        
+
         <div class="posts-wrapper">
             <div class="complete-posts-wrapper">
                 <div class="search-bar">
@@ -48,11 +48,11 @@
                                 </li>
                             </ul>
                         </div>
-    
+
                         <div class="post">
                             <div class="post-child post-title">
                                 <a href="/postView/{{item.qID}}">{{item.title}}</a>
-                                <span>category</span>
+                                <span>{{item.category}}</span>
                             </div>
                             <!-- <div class="post-child post-content">
                                 {{item.about}}
@@ -64,7 +64,7 @@
                                         <span class="comment-text">{{item.comments}}</span>
                                     </a>
                                 </div>
-    
+
                                 <div class="poster-container">
                                     <span class="poster">
                                         by {{name}}
@@ -79,7 +79,7 @@
                 </div>
                 {% endfor %}
             </div>
-    
+
             <!-- <div class="side-content">
                 <ul>
                     <li>category</li>
