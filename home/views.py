@@ -200,7 +200,18 @@ def profile(request):
         else:
             user = Teachers.objects.filter(
                 tID=request.session.get("uId")).first()
-        userData = {"user": user}
+
+        # count post
+        totalPost = Quentions.objects.filter(
+            uID=request.session.get("uId")).all()
+        totalComment = Answers.objects.filter(
+            uID=request.session.get("uId")).all()
+        userData = {
+            "user": user,
+            "post": totalPost,
+            "postCount": len(totalPost),
+            "commentCount": len(totalComment),
+        }
         return render(request, "profile.html", userData)
     return redirect(index)
 
