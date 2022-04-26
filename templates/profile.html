@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="{% static 'css/profile.css' %}">
 {% endblock link %}
 <div class="body-wrapper">
-        
+
     <div class="posts-wrapper">
         <div class="complete-posts-wrapper">
             <!-- <div class="search-bar">
@@ -19,7 +19,9 @@
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
             </div> -->
-            {% for item,name,vote in postNameMix %}
+
+            <!-- post template -->
+            {% for item in post %}
             <div class="complete-post">
                 <div class="post-container">
                     <div class="vote">
@@ -63,7 +65,7 @@
 
                             <div class="poster-container">
                                 <span class="poster">
-                                    by {{name}}
+                                    by You
                                     {% comment %} <span class="badge badge-student">👩‍🎓</span> {% endcomment %}
                                     <!-- <span class="badge badge-teacher">👩‍🏫</span> -->
                                 </span>
@@ -80,19 +82,27 @@
             <div class="profile-wrapper">
                 <img src="{% static 'img/user.png' %}" alt="">
                 <div class="name">
-                    Name
+                    {{user.name}}
                 </div>
                 <div class="profile-stats">
                     <i class="fa-solid fa-comment-dots">
-                        1
+                        {{commentCount}}
                     </i>
                     <i class="fa-solid fa-newspaper">
-                        1
+                        {{postCount}}
                     </i>
                 </div>
-                <button class="verify-btn">
+                {% if not user.isVerified %}
+                <button class="verify-btn" id="verifyBtn">
                     Verify
                 </button>
+                <form action="/api/verifyOTP" method="post" id="verifyForm">
+                    {% csrf_token %}
+                    <input type="number" name="otp" id="">
+                    <button type="submit">Verify</button>
+                </form>
+                <script src="{% static 'js/profile.js' %}"></script>
+                {% endif %}
             </div>
         </div>
     </div>
