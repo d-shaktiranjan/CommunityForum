@@ -1,3 +1,34 @@
-.side-content > img {
-    width: 30%;
+.side-content {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+}
+
+.profile-stats {
+    display: flex;
+    justify-content: space-around;
+}
+
+.profile-stats, .side-content > div > img {
+    width: 50%;
+}
+
+.profile-wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.verify-btn {
+    background-color: #f36e54;
+    width: fit-content;
+    padding: 0.6rem;
+    width: 4rem;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease 0s;
+    border: none;
+    color: white;
+    cursor: pointer;
 }
