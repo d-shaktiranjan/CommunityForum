@@ -18,7 +18,10 @@ def index(request):
         else:
             allQuestions = Quentions.objects.filter(
                 category=branch).all().order_by('dateTimeOfPost').reverse()
-
+        sendDict = {}
+        if len(allQuestions) == 0:
+            sendDict["nothing"] = True
+            return render(request, "index.html", sendDict)
         nameList = []
         voteList = []
         for item in allQuestions:

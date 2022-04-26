@@ -11,7 +11,6 @@
 
 <main>
     <div class="body-wrapper">
-
         <div class="posts-wrapper">
             <div class="complete-posts-wrapper">
                 <!-- <div class="search-bar">
@@ -22,70 +21,31 @@
                 </div> -->
 
                 <div class="category-wrapper">
-                    <div class="category-chip">
-                        Category
+                    <div class="category-chip" onclick="window.location.href='/'">
+                        All
                     </div>
-                    <div class="category-chip">
-                        Category
+                    <div class="category-chip" onclick="window.location.href='/?cat=CSE'">
+                        CSE
                     </div>
-                    <div class="category-chip">
-                        Category
+                    <div class="category-chip" onclick="window.location.href='/?cat=ETC'">
+                        ETC
                     </div>
-                    <div class="category-chip">
-                        Category
+                    <div class="category-chip" onclick="window.location.href='/?cat=EE'">
+                        EE
                     </div>
-                    <div class="category-chip">
-                        Category
+                    <div class="category-chip" onclick="window.location.href='/?cat=ME'">
+                        ME
                     </div>
-                    <div class="category-chip">
-                        Category
+                    <div class="category-chip" onclick="window.location.href='/?cat=EEE'">
+                        EEE
                     </div>
-                    <div class="category-chip">
-                        Category
-                    </div>
-                    <div class="category-chip">
-                        Category
-                    </div>
-                    <div class="category-chip">
-                        Category
-                    </div>
-                    <div class="category-chip">
-                        Category
-                    </div>
-                    <div class="category-chip">
-                        Category
-                    </div>
-                    <div class="category-chip">
-                        Category
-                    </div>
-                    <div class="category-chip">
-                        Category
-                    </div>
-                    <div class="category-chip">
-                        Category
-                    </div>
-                    <div class="category-chip">
-                        Category
-                    </div>
-                    <div class="category-chip">
-                        Category
-                    </div>
-                    <div class="category-chip">
-                        Category
-                    </div>
-                    <div class="category-chip">
-                        Category
-                    </div>
-                    <div class="category-chip">
-                        Category
-                    </div>
-                    <div class="category-chip">
-                        Category
-                    </div>
-                    <div class="category-chip">
-                        Category
+                    <div class="category-chip" onclick="window.location.href='/?cat=Civil'">
+                        Civil
                     </div>
                 </div>
+                {% if nothing %}
+                no post here
+                {% else %}
                 {% for item,name,vote in postNameMix %}
                 <div class="complete-post">
                     <div class="post-container">
@@ -144,6 +104,7 @@
                     </div>
                 </div>
                 {% endfor %}
+                {% endif %}
             </div>
 
             <!-- <div class="side-content">
