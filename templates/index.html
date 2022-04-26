@@ -50,7 +50,10 @@
                         </div>
     
                         <div class="post">
-                            <div class="post-child post-title"><a href="/postView/{{item.qID}}">{{item.title}}</a></div>
+                            <div class="post-child post-title">
+                                <a href="/postView/{{item.qID}}">{{item.title}}</a>
+                                <span>category</span>
+                            </div>
                             <!-- <div class="post-child post-content">
                                 {{item.about}}
                             </div> -->
@@ -77,9 +80,14 @@
                 {% endfor %}
             </div>
     
-            <div class="side-content">
-                Test
-            </div>
+            <!-- <div class="side-content">
+                <ul>
+                    <li>category</li>
+                    <li>category</li>
+                    <li>category</li>
+                    <li>category</li>
+                </ul>
+            </div> -->
         </div>
     </div>
 

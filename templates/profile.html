@@ -3,41 +3,82 @@
 {% block title %}Profile{% endblock title %}
 
 {% block body %}
-<!-- <br> <br> <br>
-<h1>Name:- {{user.name}}</h1>
-<h2>Email:- {{user.regNumber}}@cgu-odisha.ac.in</h2>
-<h2>Reg Number:- {{user.regNumber}}</h2>
-<h2>Branch:- {{user.branch}}</h2>
-<h2>Date & time of join:- {{user.dateTimeOfJoin}}</h2>
-<h2>Total Question Posted:- {{totalQuestions}}</h2>
-{% if totalQuestions > 0 %}
-<h1><u>Post List</u></h1>
-{% for item in questionList %}
-<h2>{{item.title}}</h2>
-{% endfor %}
-{% endif %} -->
-{% load static %}
-<div class="profile">
-    <div class="profile-about">
-        <h1 class="profile-name">Name</h1>
-        <ul class="profile-meta">
-            <li class="profile-meta-item">
-                <i class="fa-solid fa-message"></i>
-            </li>
-            <li class="profile-meta-item">
-                <i class="fa-solid fa-newspaper"></i>
-            </li>
-        </ul>
-    </div>
-    {% if not user.isVerified %}
-    <button id="verifyBtn">Verify now</button>
-    <form action="/api/verifyOTP" method="post" id="verifyForm">
-        {% csrf_token %}
-        <input type="number" name="otp" id="">
-        <button type="submit">Verify</button>
-    </form>
-    <script src="{% static 'js/profile.js' %}"></script>
-    {% endif %}
-</div>
 
+{% load static %}
+{% block link %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock link %}
+<div class="body-wrapper">
+        
+    <div class="posts-wrapper">
+        <div class="complete-posts-wrapper">
+            <!-- <div class="search-bar">
+                <input type="text" name="search-bar" id="search-bar" placeholder="Search">
+                <button class="search-btn">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </div> -->
+            {% for item,name,vote in postNameMix %}
+            <div class="complete-post">
+                <div class="post-container">
+                    <div class="vote">
+                        <ul class="vote-icons">
+                            <li>
+                                <form action="/addLike" method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="qID" value="{{item.qID}}">
+                                    <button class="vote-btn" {% if not request.session.log %}disabled{% endif %}>
+                                        <i class="vote-icon fa-regular fa-thumbs-up"></i>
+                                        <!-- {{item.likeCount}} -->
+                                    </button>
+                                </form>
+                            </li>
+                            <li class="vote-count">{{vote}}</li>
+                            <li>
+                                <form action="/addDisLike" method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="qID" value="{{item.qID}}">
+                                    <button class="vote-btn" {% if not request.session.log %}disabled{% endif %}>
+                                        <i class="vote-icon fa-regular fa-thumbs-down"></i>
+                                        <!-- {{item.disLikeCount}} -->
+                                    </button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="post">
+                        <div class="post-child post-title"><a href="/postView/{{item.qID}}">{{item.title}}</a></div>
+                        <!-- <div class="post-child post-content">
+                            {{item.about}}
+                        </div> -->
+                        <div class="post-child post-extras">
+                            <div class="comment">
+                                <a class="comment-link" href="/postView/{{item.qID}}">
+                                    <i class="comment-icon fa-regular fa-message"></i>
+                                    <span class="comment-text">{{item.comments}}</span>
+                                </a>
+                            </div>
+
+                            <div class="poster-container">
+                                <span class="poster">
+                                    by {{name}}
+                                    {% comment %} <span class="badge badge-student">👩‍🎓</span> {% endcomment %}
+                                    <!-- <span class="badge badge-teacher">👩‍🏫</span> -->
+                                </span>
+                                <span class="post-time">On {{item.dateTimeOfPost}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="side-content">
+            <img src="{% static 'img/user.png' %}" alt="">
+        </div>
+    </div>
+</div>
 {% endblock body %}
